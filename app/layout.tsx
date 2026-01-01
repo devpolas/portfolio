@@ -35,9 +35,9 @@ export default function RootLayout({
             <Navbar />
           </header>
           <main className='pt-16 pb-4'>
-            <div className='mx-auto max-w-11/12 md:max-w-10/12'>{children}</div>
+            <div className='mx-auto max-w-11/12'>{children}</div>
           </main>
-          <footer className='mx-auto max-w-11/12 md:max-w-10/12'>
+          <footer className='mx-auto max-w-11/12'>
             <Footer />
           </footer>
         </ThemeProvider>

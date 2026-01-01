@@ -2,19 +2,22 @@
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, House, Code, Book, Baby, Presentation } from "lucide-react";
 
 export default function Navbar() {
   const menuItems = [
-    { name: "Home", href: "/" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Blog", href: "/blog" },
-    { name: "About", href: "/about" },
+    { name: "Home", href: "/", icon: <House /> },
+    { name: "Skills", href: "/#skills", icon: <Code /> },
+    { name: "Projects", href: "/projects", icon: <Presentation /> },
+    { name: "Blog", href: "/blog", icon: <Book /> },
+    { name: "About", href: "/about", icon: <Baby /> },
   ];
 
   const [show, setShow] = useState(true);
   const lastScrollY = useRef(0);
-  const scrollThreshold = 10; // minimum scroll in px to trigger hide/show
+  const scrollThreshold = 10;
+
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const controlNavbar = () => {
     if (typeof window === "undefined") return;
@@ -23,10 +26,8 @@ export default function Navbar() {
     const scrollDifference = currentScrollY - lastScrollY.current;
 
     if (scrollDifference > scrollThreshold && currentScrollY > 100) {
-      // Scrolled down more than threshold
       setShow(false);
     } else if (scrollDifference < -scrollThreshold || currentScrollY < 100) {
-      // Scrolled up more than threshold or near top
       setShow(true);
     }
 
@@ -39,7 +40,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className='top-0 left-0 z-999 fixed shadow-xs backdrop-blur-xs p-3 w-full'>
+    <div className='top-0 left-0 z-999 fixed shadow-xs backdrop-blur-xs p-3 md:p-4 w-full'>
       <AnimatePresence>
         {show && (
           <motion.div
@@ -48,19 +49,76 @@ export default function Navbar() {
             exit={{ y: -100 }}
             transition={{ duration: 0.6 }}
           >
-            <div className='mx-auto max-w-11/12 md:max-w-10/12'>
-              <div className='flex justify-between font-semibold text-lg xl:text-xl'>
-                <div>
+            <div className='mx-auto max-w-11/12'>
+              <div className='flex justify-between font-semibold text-lg'>
+                <div className='flex flex-row items-center gap-3'>
+                  <div
+                    onClick={() => setMobileMenuOpen((pre) => !pre)}
+                    className='md:hidden'
+                  >
+                    <AnimatePresence mode='wait'>
+                      {isMobileMenuOpen ? (
+                        <motion.div
+                          key='close'
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.9 }}
+                          transition={{ duration: 0.1 }}
+                        >
+                          <X />
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key='menu'
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.9 }}
+                          transition={{ duration: 0.1 }}
+                        >
+                          <Menu />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                   <p>Logo</p>
                 </div>
-                <div className='hidden md:flex flex-row gap-8 xl:gap-12'>
+
+                <AnimatePresence mode='wait'>
+                  {isMobileMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -100 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: -100, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className='absolute flex flex-col gap-4 bg-background backdrop-blur-md mt-12 px-10 py-4 border border-accent rounded-md'
+                    >
+                      {menuItems.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className='hover:text-ring transition-colors'
+                        >
+                          <span className='flex flex-row items-center gap-3'>
+                            {item.icon}
+                            {item.name}
+                          </span>
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className='hidden md:flex flex-row gap-4 lg:gap-8 xl:gap-10 text-lg'>
                   {menuItems.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className='hover:text-purple-600 transition-colors'
+                      className='hover:text-ring transition-colors'
                     >
-                      {item.name}
+                      <span className='flex flex-row items-center gap-0.5 lg:gap-1'>
+                        {item.icon}
+                        {item.name}
+                      </span>
                     </Link>
                   ))}
                 </div>
