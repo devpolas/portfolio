@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, House, Code, Book, Baby, Presentation } from "lucide-react";
+import { Button } from "../ui/button";
+import Logo from "../logo/logo";
 
 export default function Navbar() {
   const menuItems = [
@@ -40,7 +42,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className='top-0 left-0 z-999 fixed shadow-xs backdrop-blur-xs p-3 md:p-4 w-full'>
+    <div className='top-0 left-0 z-999 fixed shadow-xs backdrop-blur-xs border-accent border-b w-full'>
       <AnimatePresence>
         {show && (
           <motion.div
@@ -49,9 +51,9 @@ export default function Navbar() {
             exit={{ y: -100 }}
             transition={{ duration: 0.6 }}
           >
-            <div className='mx-auto max-w-11/12'>
+            <div className='mx-auto p-3 max-w-11/12'>
               <div className='flex justify-between font-semibold text-lg'>
-                <div className='flex flex-row items-center gap-3'>
+                <div className='flex flex-row items-center gap-1'>
                   <div
                     onClick={() => setMobileMenuOpen((pre) => !pre)}
                     className='md:hidden'
@@ -80,7 +82,7 @@ export default function Navbar() {
                       )}
                     </AnimatePresence>
                   </div>
-                  <p>Logo</p>
+                  <Logo />
                 </div>
 
                 <AnimatePresence mode='wait'>
@@ -122,9 +124,15 @@ export default function Navbar() {
                     </Link>
                   ))}
                 </div>
-                <div>
-                  <p>Let&apos;s Talk</p>
-                </div>
+                <Link href='/#contact'>
+                  <Button
+                    size='default'
+                    className='font-semibold text-sm md:text-lg hover:cursor-pointer'
+                    variant='outline'
+                  >
+                    Let&apos;s Talk
+                  </Button>
+                </Link>
               </div>
             </div>
           </motion.div>
