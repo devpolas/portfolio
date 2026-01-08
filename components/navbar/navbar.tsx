@@ -52,7 +52,7 @@ export default function Navbar() {
             transition={{ duration: 0.6 }}
           >
             <div className='mx-auto p-3 max-w-11/12'>
-              <div className='flex justify-between font-semibold text-lg'>
+              <div className='flex justify-between items-center font-semibold text-lg'>
                 <div className='flex flex-row items-center gap-1'>
                   <div
                     onClick={() => setMobileMenuOpen((pre) => !pre)}
