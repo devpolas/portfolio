@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "motion/react"
 import {
   Menu,
   X,
@@ -18,6 +18,8 @@ import Logo from "../logo/logo"
 import NavIcon from "./nav-icon"
 import scrollToSection from "@/utils/scroll-to-section"
 import useActiveSection from "@/hooks/use-active-section-id"
+import { ThemeSwitcher } from "../theme/theme-switcher"
+import ResumeButton from "../buttons/resume-button"
 
 const menuItems = [
   { name: "Home", href: "/#home", icon: House },
@@ -138,18 +140,11 @@ export default function Navbar() {
                 )
               })}
             </div>
-            <Link
-              download={true}
-              href="https://github.com/onlineservice24/resume/releases/download/final_V1/Polas_Chandra_Barmon_Full_Stack_Developer_Resume.pdf"
-            >
-              <Button
-                size="default"
-                className="text-sm font-semibold hover:cursor-pointer lg:text-lg"
-                variant="outline"
-              >
-                Resume
-              </Button>
-            </Link>
+
+            <div className="flex items-center gap-2">
+              <ResumeButton />
+              <ThemeSwitcher />
+            </div>
           </div>
         </div>
       </motion.div>

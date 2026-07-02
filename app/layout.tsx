@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme/theme-provider"
 import { cn } from "@/lib/utils"
 import Navbar from "@/components/navbar/navbar"
 import Footer from "@/components/footer/footer"
