@@ -1,116 +1,21 @@
-import Hero from "@/components/hero/hero";
+import About from "@/sections/about/about"
+import Contact from "@/sections/contact/contact"
+import Education from "@/sections/education/education"
+import Experience from "@/sections/experience/experience"
+import Hero from "@/sections/hero/hero"
+import Projects from "@/sections/projects/projects"
+import Skills from "@/sections/skills/skills"
 
 export default function page() {
   return (
     <div>
-      Home Page
       <Hero />
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
-      <p>ok</p>
+      <About />
+      <Skills />
+      <Education />
+      <Experience />
+      <Projects />
+      <Contact />
     </div>
-  );
+  )
 }

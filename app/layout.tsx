@@ -29,12 +29,12 @@ export default function RootLayout({
         inter.variable
       )}
     >
-      <body>
+      <body cz-shortcut-listen="true">
         <ThemeProvider>
           <header>
             <Navbar />
           </header>
-          <main className="pt-16 pb-4">
+          <main className="pt-20 pb-4">
             <div className="mx-auto max-w-11/12">{children}</div>
           </main>
           <footer className="mx-auto max-w-11/12">

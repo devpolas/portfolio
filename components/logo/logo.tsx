@@ -1,13 +1,13 @@
-"use client";
-import Link from "next/link";
+"use client"
+import Link from "next/link"
 
 export default function Logo() {
   return (
-    <Link className='hidden md:block' href='/'>
-      <span className='bg-muted px-4 py-2 rounded-sm text-foreground text-sm md:text-lg'>
-        <span className='opacity-80'>&gt;</span>{" "}
-        <span className='animate-ping'>{"_"}</span>
+    <Link href="/">
+      <span className="rounded-sm bg-muted px-3 py-2 font-mono text-sm md:text-lg">
+        polas@dev:~$
+        <span className="animate-pulse">_</span>
       </span>
     </Link>
-  );
+  )
 }
