@@ -5,7 +5,7 @@ export default function scrollToSection(href: string) {
   const el = document.getElementById(id)
   if (!el) return
 
-  const offset = 80
+  const offset = 40
 
   window.history.pushState(null, "", `#${id}`)
 
