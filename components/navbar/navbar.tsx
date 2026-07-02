@@ -49,7 +49,7 @@ export default function Navbar() {
               <Button
                 aria-label="Toggle navigation menu"
                 onClick={() => setMobileMenuOpen((pre) => !pre)}
-                className="md:hidden"
+                className="lg:hidden"
                 variant="ghost"
                 size="icon-lg"
               >
@@ -116,7 +116,7 @@ export default function Navbar() {
               )}
             </AnimatePresence>
 
-            <div className="hidden flex-row gap-4 md:flex lg:gap-8 xl:gap-10">
+            <div className="hidden flex-row gap-4 lg:flex lg:gap-6 xl:gap-10 2xl:gap-12">
               {menuItems.map((item) => {
                 const isActive = activeId === item.href.replace("/#", "")
 
@@ -124,7 +124,7 @@ export default function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`text-sm transition-colors lg:text-base ${
+                    className={`text-sm transition-colors xl:text-base ${
                       isActive ? "font-bold text-ring" : "hover:text-ring"
                     }`}
                     onClick={(e) => {
