@@ -34,7 +34,7 @@ export default function RootLayout({
           <header>
             <Navbar />
           </header>
-          <main className="pt-20 pb-4">
+          <main>
             <div className="mx-auto max-w-11/12">{children}</div>
           </main>
           <footer className="mx-auto max-w-11/12">
