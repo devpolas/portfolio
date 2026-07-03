@@ -94,11 +94,9 @@ export default function SkillsSection() {
                         transition={{ type: "spring", stiffness: 200 }}
                       >
                         <Card
-                          className="group flex items-center gap-3 border p-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-5"
+                          className="group flex items-center gap-3 border bg-white p-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-5"
                           style={{
                             borderColor: skill.color,
-                            boxShadow: `0 10px 30px ${skill.color}20`,
-                            background: skill.gradient,
                           }}
                         >
                           {/* Icon */}
