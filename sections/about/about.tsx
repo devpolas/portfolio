@@ -38,10 +38,7 @@ const cardContent = [
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="relative flex min-h-screen items-center overflow-hidden"
-    >
+    <section id="about" className="relative flex min-h-screen overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
       <div className="container mx-auto px-6 py-5 md:py-20">
         {/* Heading */}
