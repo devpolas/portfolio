@@ -41,7 +41,7 @@ export default function SkillsSection() {
     >
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
 
-      <div className="container mx-auto px-6 py-5 md:py-20">
+      <div className="container mx-auto px-6 py-20">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
