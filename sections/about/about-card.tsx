@@ -9,14 +9,14 @@ interface CardPropInterface {
 
 export default function AboutCard({ content }: { content: CardPropInterface }) {
   return (
-    <Card className="border hover:border-primary rounded-md transition-all hover:-translate-y-1 duration-300">
+    <Card className="rounded-md border transition-all duration-300 hover:-translate-y-1 hover:border-primary">
       <CardHeader>
-        <CardTitle className="font-semibold text-lg md:text-xl">
+        <CardTitle className="text-lg font-semibold md:text-xl">
           {content.cardTitle}
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="space-y-2 text-muted-foreground leading-relaxed">
+      <CardContent className="space-y-2 text-sm leading-relaxed text-muted-foreground">
         <p>{content.firstPart}</p>
 
         <p>{content.secondPart}</p>
