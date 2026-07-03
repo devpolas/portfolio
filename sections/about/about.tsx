@@ -40,20 +40,20 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative flex min-h-screen items-center overflow-hidden"
+      className="relative flex items-center min-h-screen overflow-hidden"
     >
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
-      <div className="container mx-auto px-6 py-5 md:py-20">
+      <div className="-z-10 absolute inset-0 bg-linear-to-b from-background via-background to-muted" />
+      <div className="mx-auto px-6 py-5 md:py-20 container">
         {/* Heading */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h1 className="text-4xl leading-tight font-bold md:text-6xl">
+          <h1 className="font-bold text-4xl md:text-6xl leading-tight">
             About
-            <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-clip-text bg-linear-to-r from-primary to-purple-500 text-transparent">
               Me
             </span>
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-6 text-muted-foreground text-sm md:text-lg leading-relaxed">
             I&apos;m a Full Stack Web Developer who enjoys transforming ideas
             into scalable, user-friendly, and high-performance web applications.
             I believe great software combines clean code, thoughtful design, and
@@ -62,7 +62,7 @@ export default function About() {
         </div>
 
         {/* Content */}
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="gap-4 grid lg:grid-cols-2">
           {cardContent.map((content) => (
             <AboutCard key={content.id} content={content} />
           ))}
