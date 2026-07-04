@@ -1,129 +1,113 @@
 "use client"
 
-import Link from "next/link"
-import { BookOpen, GraduationCap, Rocket, ExternalLink } from "lucide-react"
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { educationData } from "./data/education-data"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { getBadge } from "./education-badge"
+import { academicData, courseData } from "./data/education-data"
 
-const statusStyles: Record<string, string> = {
-  completed: "bg-green-500/10 text-green-500",
-  certified: "bg-blue-500/10 text-blue-500",
-  "in-progress": "bg-yellow-500/10 text-yellow-500",
-}
-
-export default function Education() {
+export default function EducationSection() {
   return (
     <section
       id="education"
       className="relative flex min-h-screen items-center overflow-hidden"
     >
-      {/* background */}
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
 
       <div className="container mx-auto px-6 py-20">
         {/* Header */}
+
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2 className="text-4xl font-bold md:text-5xl">
-            My{" "}
+            Education &{" "}
             <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
-              Education
+              Learning
             </span>
           </h2>
 
           <p className="mt-6 text-sm leading-relaxed text-muted-foreground md:text-lg">
-            My academic background and continuous learning journey in
-            engineering and modern full-stack web development.
+            My academic background and continuous learning journey in software
+            engineering, modern web technologies, and full-stack application
+            development.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {educationData.map((item) => {
-            const Icon = item.icon
+        <div className="space-y-6">
+          {/* Diploma */}
 
-            return (
+          <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <CardContent className="flex flex-col items-start gap-6 md:flex-row md:items-center">
+              <div className="rounded-xl bg-primary/10 p-2">
+                <academicData.icon className="h-10 w-10 text-primary" />
+              </div>
+
+              <div className="flex-1">
+                <div className="mb-2 flex flex-wrap items-center gap-3">
+                  <h3 className="text-2xl font-bold">{academicData.title}</h3>
+
+                  {getBadge(academicData.status)}
+                </div>
+
+                <p className="font-medium text-muted-foreground">
+                  {academicData.institution}
+                </p>
+
+                <p className="mt-2 max-w-3xl text-muted-foreground">
+                  Completed a Diploma in Mechanical Technology, building a
+                  strong engineering foundation in analytical thinking,
+                  technical problem solving, teamwork, and project execution.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Courses */}
+
+          <div className="grid gap-4 lg:grid-cols-2">
+            {courseData.map((course) => (
               <Card
-                key={item.title}
-                className="group h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                key={course.id}
+                className="flex h-full flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                {/* Header */}
                 <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="rounded-lg bg-primary/10 p-3">
-                      <Icon className="h-5 w-5 text-primary" />
+                  <div className="mb-2 flex items-center justify-between">
+                    <div className="rounded-lg bg-primary/10 p-2">
+                      <course.icon className="h-7 w-7 text-primary" />
                     </div>
 
-                    <span
-                      className={`rounded-full px-3 py-1 text-xs font-medium ${statusStyles[item.status]}`}
-                    >
-                      {item.status}
-                    </span>
+                    {getBadge(course.status)}
                   </div>
 
-                  <CardTitle className="mt-4 text-lg leading-snug">
-                    {item.title}
-                  </CardTitle>
+                  <CardTitle className="leading-snug">{course.title}</CardTitle>
 
-                  <p className="text-sm text-muted-foreground">
-                    {item.institution}
-                  </p>
+                  <CardDescription className="font-medium">
+                    {course.institution}
+                  </CardDescription>
                 </CardHeader>
 
-                {/* Content */}
-                <CardContent className="space-y-5">
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {item.description}
+                <CardContent className="flex flex-1 flex-col">
+                  <p className="mb-4 text-sm leading-7 text-muted-foreground">
+                    {course.description}
                   </p>
 
-                  {/* Highlights */}
-                  {"highlights" in item && item.highlights && (
-                    <div className="space-y-2">
-                      <p className="text-xs font-medium text-muted-foreground">
-                        Key Learnings
-                      </p>
+                  <h4 className="mb-3 text-sm font-semibold">Core Skills</h4>
 
-                      <div className="flex flex-wrap gap-2">
-                        {item.highlights.map((h: string) => (
-                          <Badge
-                            key={h}
-                            variant="secondary"
-                            className="text-xs"
-                          >
-                            {h}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Learning outcome */}
-                  {"learningOutcome" in item && item.learningOutcome && (
-                    <p className="text-xs leading-relaxed text-muted-foreground">
-                      <span className="font-medium text-foreground">
-                        Outcome:
-                      </span>{" "}
-                      {item.learningOutcome}
-                    </p>
-                  )}
-
-                  {/* Certificate */}
-                  {"certificate" in item && item.certificate && (
-                    <Link
-                      href={item.certificate}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                    >
-                      View Certificate
-                      <ExternalLink className="h-4 w-4" />
-                    </Link>
-                  )}
+                  <div className="flex flex-wrap gap-2">
+                    {course.skills.map((skill) => (
+                      <Badge key={skill} variant="secondary">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
-            )
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>

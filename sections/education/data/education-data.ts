@@ -1,13 +1,13 @@
 import { BookOpen, GraduationCap, Rocket } from "lucide-react"
 
-export const educationData = [
-  {
-    title: "Diploma in Mechanical Technology",
-    institution: "Diploma Engineering",
-    status: "completed",
-    icon: GraduationCap,
-  },
+export const academicData = {
+  title: "Diploma in Mechanical Technology",
+  institution: "Diploma Engineering",
+  status: "completed",
+  icon: GraduationCap,
+}
 
+export const courseData = [
   {
     id: "level-1-web-dev",
     slug: "complete-web-development-level-1",
