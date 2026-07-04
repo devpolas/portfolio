@@ -15,7 +15,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Project } from "./data/project-data"
-import ProjectDialog from "./project-dialog"
 import { FaGithub } from "react-icons/fa"
 
 interface ProjectCardProps {
@@ -48,7 +47,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       whileInView="visible"
       viewport={{ once: true }}
     >
-      <Card className="group flex h-full flex-col overflow-hidden py-0 transition-all duration-300 hover:shadow-2xl">
+      <Card className="group flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-2xl">
         {/* Image */}
 
         <div className="relative aspect-video overflow-hidden">
@@ -120,7 +119,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
         {/* Footer */}
 
-        <CardFooter className="grid grid-cols-3 gap-3">
+        <CardFooter className="grid grid-cols-2 gap-3">
           <Button asChild size="sm" className="group/button">
             <Link href={project.liveUrl} target="_blank">
               <Globe className="mr-2 h-4 w-4" />
@@ -134,18 +133,6 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               GitHub
             </Link>
           </Button>
-
-          <ProjectDialog project={project}>
-            <Button
-              variant="secondary"
-              size="sm"
-              className="group/dialog w-full"
-            >
-              <Eye className="mr-2 h-4 w-4" />
-              Details
-              <ArrowUpRight className="ml-auto h-4 w-4 transition-transform duration-300 group-hover/dialog:translate-x-0.5 group-hover/dialog:-translate-y-0.5" />
-            </Button>
-          </ProjectDialog>
         </CardFooter>
       </Card>
     </motion.div>
