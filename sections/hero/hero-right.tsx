@@ -10,9 +10,11 @@ export default function HeroRight() {
             alt="Polas"
             fill
             className="object-cover object-center"
+            loading="eager"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
           />
         </div>
-      </div>{" "}
+      </div>
     </div>
   )
 }
