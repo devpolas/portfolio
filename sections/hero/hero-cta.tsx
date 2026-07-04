@@ -1,4 +1,3 @@
-"use client"
 import { ArrowRight, Download } from "lucide-react"
 import ResumeButton from "@/components/buttons/resume-button"
 import { useIsMobile } from "@/hooks/use-mobile"

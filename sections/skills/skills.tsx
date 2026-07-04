@@ -1,5 +1,3 @@
-"use client"
-
 import Image from "next/image"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card } from "@/components/ui/card"
@@ -39,9 +37,9 @@ export default function SkillsSection() {
       viewport={{ once: true }}
       className="relative flex min-h-screen overflow-hidden"
     >
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
+      <div className="-z-10 absolute inset-0 bg-linear-to-b from-background via-background to-muted" />
 
-      <div className="container mx-auto px-6 py-16">
+      <div className="mx-auto px-6 py-16 container">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -49,14 +47,14 @@ export default function SkillsSection() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-12 max-w-3xl text-center"
         >
-          <h2 className="text-4xl font-bold md:text-5xl">
+          <h2 className="font-bold text-4xl md:text-5xl">
             Skills &{" "}
-            <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-clip-text bg-linear-to-r from-primary to-purple-500 text-transparent">
               Technologies
             </span>
           </h2>
 
-          <p className="mt-6 text-sm leading-relaxed text-muted-foreground md:text-lg">
+          <p className="mt-6 text-muted-foreground text-sm md:text-lg leading-relaxed">
             Modern tools and technologies I use to build scalable web
             applications
           </p>
@@ -64,7 +62,7 @@ export default function SkillsSection() {
 
         {/* Tabs */}
         <Tabs defaultValue="frontEnd" className="w-full">
-          <TabsList className="mx-auto mb-10 flex w-full flex-wrap justify-center gap-2">
+          <TabsList className="flex flex-wrap justify-center gap-2 mx-auto mb-10 w-full">
             {categories.map((cat) => (
               <TabsTrigger
                 key={cat.key}
@@ -88,7 +86,7 @@ export default function SkillsSection() {
                     initial="hidden"
                     animate="show"
                     exit="hidden"
-                    className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-6"
+                    className="gap-4 lg:gap-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
                   >
                     {skills.map((skill) => (
                       <motion.div
@@ -98,13 +96,13 @@ export default function SkillsSection() {
                         transition={{ type: "spring", stiffness: 200 }}
                       >
                         <Card
-                          className="group flex items-center gap-3 border bg-white p-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-5"
+                          className="group flex items-center gap-3 bg-white hover:shadow-lg p-3 md:p-5 border transition-all hover:-translate-y-1 duration-300"
                           style={{
                             borderColor: skill.color,
                           }}
                         >
                           {/* Icon */}
-                          <div className="relative h-6 w-6 shrink-0 lg:h-8 lg:w-8">
+                          <div className="relative w-6 lg:w-8 h-6 lg:h-8 shrink-0">
                             <Image
                               src={skill.icon}
                               alt={skill.name}
@@ -115,7 +113,7 @@ export default function SkillsSection() {
 
                           {/* Name */}
                           <span
-                            className="text-sm font-medium"
+                            className="font-medium text-sm"
                             style={{ color: skill.color }}
                           >
                             {skill.name}

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Mail, Phone } from "lucide-react"
+import { Mail } from "lucide-react"
 import Link from "next/link"
 import { FaGithub, FaLinkedin, FaTelegram, FaWhatsapp } from "react-icons/fa"
 

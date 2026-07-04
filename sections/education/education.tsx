@@ -1,5 +1,3 @@
-"use client"
-
 import { Badge } from "@/components/ui/badge"
 import {
   Card,
@@ -11,7 +9,7 @@ import {
 import { getBadge } from "./education-badge"
 import { academicData, courseData } from "./data/education-data"
 import Link from "next/link"
-import { ArrowUpRight, FileBadge2, Link2 } from "lucide-react"
+import { ArrowUpRight, FileBadge2 } from "lucide-react"
 
 export default function EducationSection() {
   return (

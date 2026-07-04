@@ -1,5 +1,3 @@
-"use client"
-
 import Link from "next/link"
 import { Mail, Phone, MapPin, SendHorizontal } from "lucide-react"
 
@@ -11,8 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { InputField } from "@/components/input/input-field"
 import { TextareaField } from "@/components/input/textarea-field"
