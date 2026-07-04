@@ -48,17 +48,14 @@ const contactInfo = [
 
 export default function Contact() {
   return (
-    <section
-      id="contact"
-      className="relative flex min-h-screen items-center overflow-hidden"
-    >
+    <section id="contact" className="relative min-h-screen overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
 
-      <div className="container mx-auto py-16">
+      <div className="container mx-auto px-4 py-24">
         {/* Header */}
 
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="text-4xl font-bold md:text-5xl">
+          <h2 className="text-2xl leading-tight font-bold md:text-3xl lg:text-5xl">
             Get In{" "}
             <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
               Touch

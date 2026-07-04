@@ -37,18 +37,18 @@ const cardContent = [
 
 export default function About() {
   return (
-    <section id="about" className="relative flex min-h-screen overflow-hidden">
+    <section id="about" className="relative min-h-screen overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
 
-      <div className="container mx-auto py-16">
+      <div className="container mx-auto px-4 py-24">
         {/* Heading */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h1 className="text-4xl leading-tight font-bold md:text-6xl">
+          <h2 className="text-2xl leading-tight font-bold md:text-3xl lg:text-5xl">
             About
             <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
               Me
             </span>
-          </h1>
+          </h2>
 
           <p className="mt-6 text-sm leading-relaxed text-muted-foreground md:text-lg">
             I&apos;m a Full Stack Web Developer who enjoys transforming ideas
