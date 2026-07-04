@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/card"
 import { getBadge } from "./education-badge"
 import { academicData, courseData } from "./data/education-data"
+import Link from "next/link"
+import { ArrowUpRight, FileBadge2, Link2 } from "lucide-react"
 
 export default function EducationSection() {
   return (
@@ -19,10 +21,10 @@ export default function EducationSection() {
     >
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
 
-      <div className="container mx-auto px-6 py-20">
+      <div className="container mx-auto px-6 py-16">
         {/* Header */}
 
-        <div className="mx-auto mb-16 max-w-3xl text-center">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
           <h2 className="text-4xl font-bold md:text-5xl">
             Education &{" "}
             <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
@@ -37,7 +39,7 @@ export default function EducationSection() {
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Diploma */}
 
           <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -85,12 +87,33 @@ export default function EducationSection() {
 
                   <CardTitle className="leading-snug">{course.title}</CardTitle>
 
-                  <CardDescription className="font-medium">
-                    {course.institution}
+                  <CardDescription>
+                    <p className="mb-2 font-medium">{course.institution}</p>
+
+                    {course.certificate.url ? (
+                      <Link
+                        href={course.certificate.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center gap-2 rounded-xl border bg-card px-2 py-1 text-sm font-medium shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+                      >
+                        <div className="rounded-md bg-primary/10 p-1 text-primary">
+                          <FileBadge2 className="h-4 w-4" />
+                        </div>
+
+                        <span>View Certificate</span>
+
+                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center rounded-full border border-dashed px-3 py-1.5 text-sm text-muted-foreground">
+                        Not Issued
+                      </span>
+                    )}
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="flex flex-1 flex-col">
+                <CardContent className="-mt-1 flex flex-1 flex-col">
                   <p className="mb-4 text-sm leading-7 text-muted-foreground">
                     {course.description}
                   </p>

@@ -20,7 +20,7 @@ export const courseData = [
 
     certificate: {
       title: "Course Certificate",
-      url: "https://web.programming-hero.com/course-details",
+      url: "https://drive.google.com/file/d/1-Nsz8hYQokMaTrDszplEDgwykwy086IH/view?usp=drive_link",
       verified: false,
     },
 
@@ -82,7 +82,7 @@ export const courseData = [
 
     certificate: {
       title: "Course Certificate",
-      url: "https://next.programming-hero.com/course-details",
+      url: null,
       verified: false,
     },
 
