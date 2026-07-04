@@ -66,7 +66,11 @@ export default function SkillsSection() {
         <Tabs defaultValue="frontEnd" className="w-full">
           <TabsList className="mx-auto mb-10 flex w-full flex-wrap justify-center gap-2">
             {categories.map((cat) => (
-              <TabsTrigger key={cat.key} value={cat.key}>
+              <TabsTrigger
+                key={cat.key}
+                className="hover:cursor-pointer"
+                value={cat.key}
+              >
                 {cat.label}
               </TabsTrigger>
             ))}
