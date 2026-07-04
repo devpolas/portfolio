@@ -54,22 +54,22 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative flex items-center min-h-screen overflow-hidden"
+      className="relative flex min-h-screen items-center overflow-hidden"
     >
-      <div className="-z-10 absolute inset-0 bg-linear-to-b from-background via-background to-muted" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
 
-      <div className="mx-auto px-6 py-20 container">
+      <div className="container mx-auto px-6 py-16">
         {/* Header */}
 
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="font-bold text-4xl md:text-5xl">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <h2 className="text-4xl font-bold md:text-5xl">
             Get In{" "}
-            <span className="bg-clip-text bg-linear-to-r from-primary to-purple-500 text-transparent">
+            <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
               Touch
             </span>
           </h2>
 
-          <p className="mt-6 text-muted-foreground text-sm md:text-lg leading-relaxed">
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground md:text-lg">
             I&apos;m always excited to discuss new opportunities, collaborate on
             interesting projects. Feel free to reach out, and I&apos;ll get back
             to you as soon as possible.
@@ -78,17 +78,17 @@ export default function Contact() {
 
         {/* Content */}
 
-        <div className="items-stretch gap-8 grid lg:grid-cols-5">
+        <div className="grid items-stretch gap-8 lg:grid-cols-5">
           {/* Contact Info */}
 
           <div className="lg:col-span-2">
-            <Card className="hover:shadow-xl pb-2 h-full transition-all hover:-translate-y-1 duration-300">
+            <Card className="h-full pb-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
               <CardHeader>
-                <CardTitle className="font-semibold text-lg md:text-xl">
+                <CardTitle className="text-lg font-semibold md:text-xl">
                   Contact Information
                 </CardTitle>
 
-                <CardDescription className="text-muted-foreground text-sm leading-relaxed">
+                <CardDescription className="text-sm leading-relaxed text-muted-foreground">
                   Feel free to reach out through any of the following channels.
                 </CardDescription>
               </CardHeader>
@@ -110,14 +110,14 @@ export default function Contact() {
                           : undefined
                       }
                     >
-                      <Card className="hover:shadow-md mb-3 py-4 transition-all hover:-translate-y-1 duration-300">
+                      <Card className="mb-3 py-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                         <CardContent className="flex items-center gap-4">
-                          <div className="bg-primary/10 p-3 rounded-lg">
-                            <Icon className="w-4 h-4 text-primary" />
+                          <div className="rounded-lg bg-primary/10 p-3">
+                            <Icon className="h-4 w-4 text-primary" />
                           </div>
 
                           <div>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-sm text-muted-foreground">
                               {item.title}
                             </p>
 
@@ -135,13 +135,13 @@ export default function Contact() {
           {/* Contact Form */}
 
           <div className="lg:col-span-3">
-            <Card className="hover:shadow-xl h-full transition-all hover:-translate-y-1 duration-300">
+            <Card className="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
               <CardHeader>
-                <CardTitle className="font-semibold text-lg md:text-xl">
+                <CardTitle className="text-lg font-semibold md:text-xl">
                   Send Me a Message
                 </CardTitle>
 
-                <CardDescription className="text-muted-foreground text-sm leading-relaxed">
+                <CardDescription className="text-sm leading-relaxed text-muted-foreground">
                   Fill out the form below and I&apos;ll reply as soon as
                   possible.
                 </CardDescription>
@@ -149,7 +149,7 @@ export default function Contact() {
 
               <CardContent>
                 <form className="space-y-5">
-                  <div className="gap-5 grid md:grid-cols-2">
+                  <div className="grid gap-5 md:grid-cols-2">
                     <InputField
                       id="name"
                       name="name"
@@ -187,10 +187,10 @@ export default function Contact() {
                     type="submit"
                     size="lg"
                     variant={"secondary"}
-                    className="group hover:shadow-md w-full active:scale-[0.98] transition-all hover:-translate-y-0.5 active:translate-y-0 duration-300 ease-out hover:cursor-pointer"
+                    className="group w-full transition-all duration-300 ease-out hover:-translate-y-0.5 hover:cursor-pointer hover:shadow-md active:translate-y-0 active:scale-[0.98]"
                   >
                     Send Message
-                    <SendHorizontal className="w-4 h-4 group-hover:-rotate-35 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 duration-300 ease-out" />
+                    <SendHorizontal className="h-4 w-4 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:-rotate-35" />
                   </Button>
                 </form>
               </CardContent>

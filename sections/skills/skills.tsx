@@ -41,13 +41,13 @@ export default function SkillsSection() {
     >
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
 
-      <div className="container mx-auto px-6 py-20">
+      <div className="container mx-auto px-6 py-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mx-auto mb-16 max-w-3xl text-center"
+          className="mx-auto mb-12 max-w-3xl text-center"
         >
           <h2 className="text-4xl font-bold md:text-5xl">
             Skills &{" "}
