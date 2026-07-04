@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { Mail } from "lucide-react"
+import { Mail, Phone } from "lucide-react"
 import Link from "next/link"
-import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaTelegram, FaWhatsapp } from "react-icons/fa"
 
 export default function HeroSocial() {
   return (
@@ -41,6 +41,24 @@ export default function HeroSocial() {
           variant="outline"
         >
           <Mail className="h-5 w-5" />
+        </Button>
+      </Link>
+      <Link href="https://wa.me/8801732333951">
+        <Button
+          size="icon"
+          className="transition-all duration-300 hover:scale-110 hover:cursor-pointer"
+          variant="outline"
+        >
+          <FaWhatsapp className="h-5 w-5" />
+        </Button>
+      </Link>
+      <Link href="https://t.me/devpolas" target="_blank">
+        <Button
+          size="icon"
+          className="transition-all duration-300 hover:scale-110 hover:cursor-pointer"
+          variant="outline"
+        >
+          <FaTelegram className="h-5 w-5" />
         </Button>
       </Link>
     </div>
