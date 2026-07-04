@@ -13,7 +13,7 @@ export const getBadge = (status: string) => {
 
     case "certified":
       return (
-        <Badge>
+        <Badge variant={"secondary"}>
           <CheckCircle2 className="mr-1 h-3.5 w-3.5" />
           Certified
         </Badge>
