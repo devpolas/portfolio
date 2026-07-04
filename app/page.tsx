@@ -13,7 +13,7 @@ export default function page() {
       <About />
       <Skills />
       <Education />
-      <Experience />
+      {/* <Experience /> */}
       <Projects />
       <Contact />
     </div>

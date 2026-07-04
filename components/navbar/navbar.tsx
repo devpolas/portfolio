@@ -26,7 +26,7 @@ const menuItems = [
   { name: "About", href: "/#about", icon: User },
   { name: "Skills", href: "/#skills", icon: Code },
   { name: "Education", href: "/#education", icon: GraduationCap },
-  { name: "Experience", href: "/#experience", icon: BriefcaseBusiness },
+  // { name: "Experience", href: "/#experience", icon: BriefcaseBusiness },
   { name: "Projects", href: "/#projects", icon: FolderGit2 },
   { name: "Contact", href: "/#contact", icon: Mail },
 ]
