@@ -115,7 +115,7 @@ export default function SkillsSection() {
 
                           {/* Name */}
                           <span
-                            className="text-sm font-medium"
+                            className={`text-sm font-medium ${!skill.color && "text-secondary-foreground"}`}
                             style={{ color: skill.color }}
                           >
                             {skill.name}

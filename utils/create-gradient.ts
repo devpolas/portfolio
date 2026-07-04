@@ -1,3 +1,11 @@
 export function createGradient(base: string) {
-  return `linear-gradient(135deg, ${base}75, ${base}10)`
+  return `
+    radial-gradient(
+      circle at top left,
+      ${base}AA 0%,
+      ${base}44 40%,
+      ${base}10 70%,
+      transparent 100%
+    )
+  `
 }

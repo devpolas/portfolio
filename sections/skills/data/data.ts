@@ -41,7 +41,7 @@ export const skillData = {
     {
       name: "Next.js",
       icon: "/nextjs.svg",
-      color: "#ffffff",
+      color: "",
       gradient: createGradient("#ffffff"),
     },
     {
@@ -53,7 +53,7 @@ export const skillData = {
     {
       name: "Zustand",
       icon: "/zustand.svg",
-      color: "#ffffff",
+      color: "",
       gradient: createGradient("#ffffff"),
     },
     {
@@ -101,7 +101,7 @@ export const skillData = {
     {
       name: "shadcn/ui",
       icon: "/shadcn.svg",
-      color: "#ffffff",
+      color: "",
       gradient: createGradient("#ffffff"),
     },
     {
@@ -122,7 +122,7 @@ export const skillData = {
     {
       name: "Express.js",
       icon: "/express.svg",
-      color: "#ffffff",
+      color: "",
       gradient: createGradient("#ffffff"),
     },
     {
@@ -173,7 +173,7 @@ export const skillData = {
     {
       name: "Prisma",
       icon: "/prisma.svg",
-      color: "#ffffff",
+      color: "",
       gradient: createGradient("#ffffff"),
     },
     {
@@ -200,7 +200,7 @@ export const skillData = {
     {
       name: "JWT",
       icon: "/jwt.svg",
-      color: "#ffffff",
+      color: "",
       gradient: createGradient("#ffffff"),
     },
     {
@@ -227,7 +227,7 @@ export const skillData = {
     {
       name: "Vercel",
       icon: "/vercel.svg",
-      color: "#ffffff",
+      color: "",
       gradient: createGradient("#ffffff"),
     },
     {
@@ -260,7 +260,7 @@ export const skillData = {
     {
       name: "GitHub",
       icon: "/github.svg",
-      color: "#ffffff",
+      color: "",
       gradient: createGradient("#ffffff"),
     },
     {
