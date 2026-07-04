@@ -41,8 +41,8 @@ export const skillData = {
     {
       name: "Next.js",
       icon: "/nextjs.svg",
-      color: "#000000",
-      gradient: createGradient("#444444"),
+      color: "#ffffff",
+      gradient: createGradient("#ffffff"),
     },
     {
       name: "Redux",
@@ -53,8 +53,8 @@ export const skillData = {
     {
       name: "Zustand",
       icon: "/zustand.svg",
-      color: "#443E38",
-      gradient: createGradient("#443E38"),
+      color: "#ffffff",
+      gradient: createGradient("#ffffff"),
     },
     {
       name: "React Router",
@@ -101,14 +101,14 @@ export const skillData = {
     {
       name: "shadcn/ui",
       icon: "/shadcn.svg",
-      color: "#111111",
-      gradient: createGradient("#222222"),
+      color: "#ffffff",
+      gradient: createGradient("#ffffff"),
     },
     {
       name: "DaisyUI",
       icon: "/daisyui.svg",
-      color: "#5A0EF8",
-      gradient: createGradient("#5A0EF8"),
+      color: "#F7DF1E",
+      gradient: createGradient("#F7DF1E"),
     },
   ],
 
@@ -122,8 +122,8 @@ export const skillData = {
     {
       name: "Express.js",
       icon: "/express.svg",
-      color: "#000000",
-      gradient: createGradient("#333333"),
+      color: "#ffffff",
+      gradient: createGradient("#ffffff"),
     },
     {
       name: "TypeScript",
@@ -173,14 +173,14 @@ export const skillData = {
     {
       name: "Prisma",
       icon: "/prisma.svg",
-      color: "#2D3748",
-      gradient: createGradient("#2D3748"),
+      color: "#ffffff",
+      gradient: createGradient("#ffffff"),
     },
     {
       name: "Mongoose",
       icon: "/mongoose.svg",
-      color: "#880000",
-      gradient: createGradient("#880000"),
+      color: "#47A248",
+      gradient: createGradient("#47A248"),
     },
   ],
 
@@ -200,8 +200,8 @@ export const skillData = {
     {
       name: "JWT",
       icon: "/jwt.svg",
-      color: "#000000",
-      gradient: createGradient("#222222"),
+      color: "#ffffff",
+      gradient: createGradient("#ffffff"),
     },
     {
       name: "bcrypt",
@@ -227,8 +227,8 @@ export const skillData = {
     {
       name: "Vercel",
       icon: "/vercel.svg",
-      color: "#000000",
-      gradient: createGradient("#333333"),
+      color: "#ffffff",
+      gradient: createGradient("#ffffff"),
     },
     {
       name: "Netlify",
@@ -260,8 +260,8 @@ export const skillData = {
     {
       name: "GitHub",
       icon: "/github.svg",
-      color: "#181717",
-      gradient: createGradient("#333333"),
+      color: "#ffffff",
+      gradient: createGradient("#ffffff"),
     },
     {
       name: "Postman",

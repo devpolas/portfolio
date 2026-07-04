@@ -40,7 +40,7 @@ export default function About() {
     <section id="about" className="relative flex min-h-screen overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
 
-      <div className="container mx-auto px-6 py-16">
+      <div className="container mx-auto py-16">
         {/* Heading */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <h1 className="text-4xl leading-tight font-bold md:text-6xl">

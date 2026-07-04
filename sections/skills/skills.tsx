@@ -40,7 +40,7 @@ export default function SkillsSection() {
     >
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
 
-      <div className="container mx-auto px-6 py-16">
+      <div className="container mx-auto py-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -97,9 +97,10 @@ export default function SkillsSection() {
                         transition={{ type: "spring", stiffness: 200 }}
                       >
                         <Card
-                          className="group flex items-center gap-3 border bg-white p-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-5"
+                          className="group flex items-center gap-3 border p-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-5"
                           style={{
                             borderColor: skill.color,
+                            background: skill.gradient,
                           }}
                         >
                           {/* Icon */}
