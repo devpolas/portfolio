@@ -25,7 +25,7 @@ export const courseData = [
     },
 
     description:
-      "A complete beginner-to-intermediate full-stack web development program focused on real-world projects, modern tools, scalable architecture basics, and AI-assisted development workflow.",
+      "A complete beginner-to-intermediate full-stack web development program focused on real-world projects, modern tools, scalable architecture basics, and AI-assisted development workflow and production-grade application development.",
 
     highlights: [
       "HTML5, CSS3, Tailwind CSS",

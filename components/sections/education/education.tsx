@@ -117,7 +117,11 @@ export default function EducationSection() {
 
                   <div className="flex flex-wrap gap-2">
                     {course.skills.map((skill) => (
-                      <Badge key={skill} variant="secondary">
+                      <Badge
+                        key={skill}
+                        className="border-purple-300 text-sm dark:border-purple-900"
+                        variant="secondary"
+                      >
                         {skill}
                       </Badge>
                     ))}
