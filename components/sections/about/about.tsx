@@ -1,3 +1,5 @@
+"use client"
+import { AnimatePresence, motion } from "motion/react"
 import AboutCard from "./about-card"
 
 const cardContent = [
@@ -37,12 +39,23 @@ const cardContent = [
 
 export default function About() {
   return (
-    <section id="about" className="relative min-h-screen overflow-hidden">
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      id="about"
+      className="relative min-h-screen overflow-hidden"
+    >
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
       <div className="container mx-auto px-4 py-24">
         {/* Heading */}
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-12 max-w-3xl text-center"
+        >
           <h2 className="text-2xl leading-tight font-bold md:text-3xl lg:text-5xl">
             About
             <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
@@ -56,15 +69,22 @@ export default function About() {
             I believe great software combines clean code, thoughtful design, and
             meaningful user experiences.
           </p>
-        </div>
+        </motion.div>
 
         {/* Content */}
-        <div className="grid gap-4 lg:grid-cols-2">
-          {cardContent.map((content) => (
-            <AboutCard key={content.id} content={content} />
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="grid gap-4 lg:grid-cols-2"
+          >
+            {cardContent.map((content) => (
+              <AboutCard key={content.id} content={content} />
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
-    </section>
+    </motion.section>
   )
 }

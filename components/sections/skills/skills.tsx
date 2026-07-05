@@ -62,75 +62,82 @@ export default function SkillsSection() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="frontEnd" className="w-full">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
-          <TabsList className="v mx-auto mb-10 flex w-full flex-wrap justify-center gap-2 border bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted">
-            {categories.map((cat) => (
-              <TabsTrigger
-                key={cat.key}
-                className="text-sm font-bold hover:cursor-pointer md:text-[16px]"
-                value={cat.key}
-              >
-                {cat.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Tabs defaultValue="frontEnd" className="w-full">
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
-          {categories.map((cat) => {
-            const skills = skillData[cat.key as keyof typeof skillData]
+            <TabsList className="v mx-auto mb-10 flex w-full flex-wrap justify-center gap-2 border bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted">
+              {categories.map((cat) => (
+                <TabsTrigger
+                  key={cat.key}
+                  className="text-sm font-bold hover:cursor-pointer md:text-[16px]"
+                  value={cat.key}
+                >
+                  {cat.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
 
-            return (
-              <TabsContent key={cat.key} value={cat.key}>
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={cat.key}
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="show"
-                    exit="hidden"
-                    className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-6"
-                  >
-                    {skills.map((skill) => (
-                      <motion.div
-                        key={skill.name}
-                        variants={itemVariants}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 200 }}
-                      >
-                        <Card
-                          className="group flex items-center gap-3 border p-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-5"
-                          style={{
-                            borderColor: skill.color,
-                            background: skill.gradient,
-                          }}
+            {categories.map((cat) => {
+              const skills = skillData[cat.key as keyof typeof skillData]
+
+              return (
+                <TabsContent key={cat.key} value={cat.key}>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={cat.key}
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="show"
+                      exit="hidden"
+                      className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-6"
+                    >
+                      {skills.map((skill) => (
+                        <motion.div
+                          key={skill.name}
+                          variants={itemVariants}
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ type: "spring", stiffness: 200 }}
                         >
-                          {/* Icon */}
-                          <div className="relative h-6 w-6 shrink-0 lg:h-8 lg:w-8">
-                            <Image
-                              src={skill.icon}
-                              alt={skill.name}
-                              fill
-                              className="object-contain"
-                            />
-                          </div>
-
-                          {/* Name */}
-                          <span
-                            className={`text-sm font-medium ${!skill.color && "text-secondary-foreground"}`}
-                            style={{ color: skill.color }}
+                          <Card
+                            className="group flex items-center gap-3 border p-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-5"
+                            style={{
+                              borderColor: skill.color,
+                              background: skill.gradient,
+                            }}
                           >
-                            {skill.name}
-                          </span>
-                        </Card>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
-              </TabsContent>
-            )
-          })}
-        </Tabs>
+                            {/* Icon */}
+                            <div className="relative h-6 w-6 shrink-0 lg:h-8 lg:w-8">
+                              <Image
+                                src={skill.icon}
+                                alt={skill.name}
+                                fill
+                                className="object-contain"
+                              />
+                            </div>
+
+                            {/* Name */}
+                            <span
+                              className={`text-sm font-medium ${!skill.color && "text-secondary-foreground"}`}
+                              style={{ color: skill.color }}
+                            >
+                              {skill.name}
+                            </span>
+                          </Card>
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  </AnimatePresence>
+                </TabsContent>
+              )
+            })}
+          </Tabs>
+        </motion.div>
       </div>
     </motion.section>
   )

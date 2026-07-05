@@ -1,4 +1,6 @@
+"use client"
 import Link from "next/link"
+import { motion } from "motion/react"
 import { Mail, Phone, MapPin, SendHorizontal } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -48,13 +50,24 @@ const contactInfo = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative min-h-screen overflow-hidden">
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      id="contact"
+      className="relative min-h-screen overflow-hidden"
+    >
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
       <div className="container mx-auto px-4 py-24">
         {/* Header */}
 
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-12 max-w-3xl text-center"
+        >
           <h2 className="text-2xl leading-tight font-bold md:text-3xl lg:text-5xl">
             Get In{" "}
             <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
@@ -67,14 +80,19 @@ export default function Contact() {
             interesting projects. Feel free to reach out, and I&apos;ll get back
             to you as soon as possible.
           </p>
-        </div>
+        </motion.div>
 
         {/* Content */}
 
         <div className="grid items-stretch gap-8 lg:grid-cols-5">
           {/* Contact Info */}
 
-          <div className="lg:col-span-2">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-2"
+          >
             <Card className="glass-morphism h-full pb-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
               <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
               <CardHeader>
@@ -125,11 +143,16 @@ export default function Contact() {
                 })}
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
 
-          <div className="lg:col-span-3">
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-3"
+          >
             <Card className="glass-morphism h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
               <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
               <CardHeader>
@@ -191,9 +214,9 @@ export default function Contact() {
                 </form>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

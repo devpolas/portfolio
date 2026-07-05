@@ -1,21 +1,18 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { ProjectCard } from "./project-card"
 import { projectData } from "./data/project-data"
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-}
-
 export default function ProjectSection() {
   return (
-    <section id="projects" className="relative min-h-screen overflow-hidden">
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      id="projects"
+      className="relative min-h-screen overflow-hidden"
+    >
       {/* Background */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
@@ -24,7 +21,6 @@ export default function ProjectSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mx-auto mb-12 max-w-3xl text-center"
         >
@@ -43,18 +39,14 @@ export default function ProjectSection() {
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
-        >
-          {projectData.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
-        </motion.div>
+        <AnimatePresence mode="wait">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {projectData.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))}
+          </div>
+        </AnimatePresence>
       </div>
-    </section>
+    </motion.section>
   )
 }
