@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider"
 import { cn } from "@/lib/utils"
 import Navbar from "@/components/navbar/navbar"
 import Footer from "@/components/footer/footer"
+import BrandLoading from "@/components/loading/brand-loading"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -35,6 +36,7 @@ export default function RootLayout({
             <Navbar />
           </header>
           <main>
+            <BrandLoading />
             <div className="mx-auto max-w-11/12">{children}</div>
           </main>
           <footer className="mx-auto max-w-11/12">
