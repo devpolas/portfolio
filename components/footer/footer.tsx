@@ -41,7 +41,7 @@ export default function Footer() {
     <footer className="w-full border-t bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <div className="container mx-auto px-6">
         {/* Main Content Grid */}
-        <div className="flex flex-col justify-between gap-10 pt-16 xl:flex-row xl:gap-12">
+        <div className="flex flex-col justify-between gap-10 pt-12 xl:flex-row xl:gap-12">
           {/* Brand Column */}
           <div className="flex-1">
             <div className="flex max-w-xs flex-col items-start space-y-4">
