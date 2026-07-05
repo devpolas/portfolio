@@ -66,6 +66,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="mx-auto mb-12 max-w-3xl text-center"
         >
           <h2 className="text-2xl leading-tight font-bold md:text-3xl lg:text-5xl">
@@ -91,6 +92,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
             className="lg:col-span-2"
           >
             <Card className="glass-morphism h-full pb-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -151,6 +153,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
             className="lg:col-span-3"
           >
             <Card className="glass-morphism h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">

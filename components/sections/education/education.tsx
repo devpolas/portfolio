@@ -31,6 +31,7 @@ export default function EducationSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="mx-auto mb-12 max-w-3xl text-center"
         >
           <h2 className="text-2xl leading-tight font-bold md:text-3xl lg:text-5xl">
@@ -84,6 +85,7 @@ export default function EducationSection() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
               className="grid gap-4 lg:grid-cols-2"
             >
               {courseData.map((course) => (

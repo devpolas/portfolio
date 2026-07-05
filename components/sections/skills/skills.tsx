@@ -46,6 +46,7 @@ export default function SkillsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="mx-auto mb-12 max-w-3xl text-center"
         >
           <h2 className="text-2xl leading-tight font-bold md:text-3xl lg:text-5xl">
@@ -67,6 +68,7 @@ export default function SkillsSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
           <Tabs defaultValue="frontEnd" className="w-full">
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />

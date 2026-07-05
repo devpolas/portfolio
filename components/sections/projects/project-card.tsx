@@ -45,6 +45,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
+      viewport={{ once: true }}
     >
       <Card className="group glass-morphism flex h-full flex-col overflow-hidden pt-0 transition-all duration-300 hover:shadow-2xl">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />

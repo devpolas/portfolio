@@ -46,24 +46,25 @@ export default function About() {
       id="about"
       className="relative min-h-screen overflow-hidden"
     >
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
+      <div className="-z-10 absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
-      <div className="container mx-auto px-4 py-24">
+      <div className="mx-auto px-4 py-24 container">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="mx-auto mb-12 max-w-3xl text-center"
         >
-          <h2 className="text-2xl leading-tight font-bold md:text-3xl lg:text-5xl">
+          <h2 className="font-bold text-2xl md:text-3xl lg:text-5xl leading-tight">
             About
-            <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-clip-text bg-linear-to-r from-primary to-purple-500 text-transparent">
               Me
             </span>
           </h2>
 
-          <p className="mt-6 text-sm leading-relaxed text-muted-foreground md:text-lg">
+          <p className="mt-6 text-muted-foreground text-sm md:text-lg leading-relaxed">
             I&apos;m a Full Stack Web Developer who enjoys transforming ideas
             into scalable, user-friendly, and high-performance web applications.
             I believe great software combines clean code, thoughtful design, and
@@ -77,7 +78,8 @@ export default function About() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="grid gap-4 lg:grid-cols-2"
+            viewport={{ once: true }}
+            className="gap-4 grid lg:grid-cols-2"
           >
             {cardContent.map((content) => (
               <AboutCard key={content.id} content={content} />
