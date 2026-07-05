@@ -38,7 +38,7 @@ export default function SkillsSection() {
       viewport={{ once: true }}
       className="relative min-h-screen overflow-hidden"
     >
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
       <div className="container mx-auto px-4 py-24">
         {/* Header */}
@@ -63,11 +63,13 @@ export default function SkillsSection() {
 
         {/* Tabs */}
         <Tabs defaultValue="frontEnd" className="w-full">
-          <TabsList className="mx-auto mb-10 flex w-full flex-wrap justify-center gap-2">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
+
+          <TabsList className="v mx-auto mb-10 flex w-full flex-wrap justify-center gap-2 border bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted">
             {categories.map((cat) => (
               <TabsTrigger
                 key={cat.key}
-                className="hover:cursor-pointer"
+                className="text-sm font-bold hover:cursor-pointer md:text-[16px]"
                 value={cat.key}
               >
                 {cat.label}

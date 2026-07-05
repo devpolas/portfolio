@@ -14,7 +14,7 @@ import { ArrowUpRight, FileBadge2 } from "lucide-react"
 export default function EducationSection() {
   return (
     <section id="education" className="relative min-h-screen overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
       <div className="container mx-auto px-4 py-24">
         {/* Header */}
@@ -37,7 +37,8 @@ export default function EducationSection() {
         <div className="space-y-4">
           {/* Diploma */}
 
-          <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <Card className="glass-morphism transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
             <CardContent className="flex flex-col items-start gap-6 md:flex-row md:items-center">
               <div className="rounded-xl bg-primary/10 p-2">
                 <academicData.icon className="h-10 w-10 text-primary" />
@@ -69,8 +70,9 @@ export default function EducationSection() {
             {courseData.map((course) => (
               <Card
                 key={course.id}
-                className="flex h-full flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="glass-morphism flex h-full flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
+                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
                 <CardHeader>
                   <div className="mb-2 flex items-center justify-between">
                     <div className="rounded-lg bg-primary/10 p-2">

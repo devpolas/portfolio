@@ -17,7 +17,7 @@ export default function ProjectSection() {
   return (
     <section id="projects" className="relative min-h-screen overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
       <div className="container mx-auto px-4 py-24">
         {/* Header */}

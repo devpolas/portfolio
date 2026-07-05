@@ -18,7 +18,6 @@ import Logo from "../logo/logo"
 import NavIcon from "./nav-icon"
 import scrollToSection from "@/utils/scroll-to-section"
 import useActiveSection from "@/hooks/use-active-section-id"
-import { ThemeSwitcher } from "../theme/theme-switcher"
 import ResumeButton from "../buttons/resume-button"
 
 const menuItems = [
@@ -44,6 +43,7 @@ export default function Navbar() {
         transition={{ duration: 0.6 }}
       >
         <div className="mx-auto max-w-11/12 p-2">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
           <div className="flex items-center justify-between font-semibold">
             <div className="flex flex-row items-center gap-1">
               <Button
@@ -143,7 +143,6 @@ export default function Navbar() {
 
             <div className="flex items-center gap-2">
               <ResumeButton />
-              <ThemeSwitcher />
             </div>
           </div>
         </div>

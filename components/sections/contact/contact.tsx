@@ -49,7 +49,7 @@ const contactInfo = [
 export default function Contact() {
   return (
     <section id="contact" className="relative min-h-screen overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-background to-muted" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
 
       <div className="container mx-auto px-4 py-24">
         {/* Header */}
@@ -75,7 +75,8 @@ export default function Contact() {
           {/* Contact Info */}
 
           <div className="lg:col-span-2">
-            <Card className="h-full pb-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <Card className="glass-morphism h-full pb-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
               <CardHeader>
                 <CardTitle className="text-lg font-semibold md:text-xl">
                   Contact Information
@@ -103,7 +104,8 @@ export default function Contact() {
                           : undefined
                       }
                     >
-                      <Card className="mb-3 py-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                      <Card className="glass-morphism mb-3 py-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
                         <CardContent className="flex items-center gap-4">
                           <div className="rounded-lg bg-primary/10 p-3">
                             <Icon className="h-4 w-4 text-primary" />
@@ -128,7 +130,8 @@ export default function Contact() {
           {/* Contact Form */}
 
           <div className="lg:col-span-3">
-            <Card className="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <Card className="glass-morphism h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
               <CardHeader>
                 <CardTitle className="text-lg font-semibold md:text-xl">
                   Send Me a Message

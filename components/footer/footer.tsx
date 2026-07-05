@@ -38,8 +38,9 @@ export default function Footer() {
   }
 
   return (
-    <footer className="w-full border-t bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
-      <div className="container mx-auto px-6">
+    <footer className="relative w-full bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+      <div className="glass-morphism-section container mx-auto px-6">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
         {/* Main Content Grid */}
         <div className="flex flex-col justify-between gap-10 pt-12 xl:flex-row xl:gap-12">
           {/* Brand Column */}
