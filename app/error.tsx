@@ -9,7 +9,6 @@ import {
 import { Button } from "@/components/ui/button"
 
 import { useEffect } from "react"
-import { Variants } from "motion/react"
 
 export default function Error({
   error,
