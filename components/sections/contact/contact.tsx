@@ -182,7 +182,7 @@ export default function Contact() {
                   <Button
                     type="submit"
                     size="lg"
-                    variant={"secondary"}
+                    variant={"outline"}
                     className="group w-full transition-all duration-300 ease-out hover:-translate-y-0.5 hover:cursor-pointer hover:shadow-md active:translate-y-0 active:scale-[0.98]"
                   >
                     Send Message

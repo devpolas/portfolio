@@ -94,13 +94,20 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
           <div className="mb-4 flex flex-wrap gap-2">
             {project.technologies.slice(0, 5).map((tech) => (
-              <Badge key={tech} variant="secondary">
+              <Badge
+                key={tech}
+                className="border-purple-300 text-xs dark:border-purple-900"
+                variant="secondary"
+              >
                 {tech}
               </Badge>
             ))}
 
             {project.technologies.length > 5 && (
-              <Badge variant="outline">
+              <Badge
+                className="border-purple-300 text-xs dark:border-purple-900"
+                variant="secondary"
+              >
                 +{project.technologies.length - 5}
               </Badge>
             )}
@@ -121,7 +128,12 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         {/* Footer */}
 
         <CardFooter className="grid grid-cols-2 gap-3">
-          <Button asChild size="sm" className="group/button">
+          <Button
+            asChild
+            variant={"secondary"}
+            size="sm"
+            className="group/button"
+          >
             <Link href={project.liveUrl} target="_blank">
               <Globe className="mr-2 h-4 w-4" />
               Live

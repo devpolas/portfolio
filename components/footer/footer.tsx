@@ -57,7 +57,7 @@ export default function Footer() {
           {/* Quick Links Column */}
           <div className="flex flex-1 flex-col gap-10 sm:flex-row sm:justify-between xl:flex-2">
             <div>
-              <h3 className="mb-8 text-xs font-semibold tracking-widest text-muted-foreground/80 uppercase">
+              <h3 className="mb-8 text-sm font-semibold tracking-widest text-muted-foreground uppercase">
                 Navigation
               </h3>
               <nav className="flex flex-col space-y-3 lg:flex-row lg:gap-10 lg:space-y-0">
@@ -78,7 +78,7 @@ export default function Footer() {
 
             {/* Connect Column */}
             <div className="flex flex-col space-y-4">
-              <h3 className="text-xs font-semibold tracking-widest text-muted-foreground/80 uppercase">
+              <h3 className="text-sm font-semibold tracking-widest text-muted-foreground uppercase">
                 Connect
               </h3>
               <div className="flex flex-wrap gap-2.5">

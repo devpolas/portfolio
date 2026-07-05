@@ -41,7 +41,7 @@ export default function EducationSection() {
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(40,10,60,1)_0%,rgba(10,5,20,1)_100%)] to-muted" />
             <CardContent className="flex flex-col items-start gap-6 md:flex-row md:items-center">
               <div className="rounded-xl bg-primary/10 p-2">
-                <academicData.icon className="h-10 w-10 text-primary" />
+                <academicData.icon className="h-10 w-10 text-purple-500" />
               </div>
 
               <div className="flex-1">
@@ -76,7 +76,7 @@ export default function EducationSection() {
                 <CardHeader>
                   <div className="mb-2 flex items-center justify-between">
                     <div className="rounded-lg bg-primary/10 p-2">
-                      <course.icon className="h-7 w-7 text-primary" />
+                      <course.icon className="h-7 w-7 text-purple-500" />
                     </div>
 
                     {getBadge(course.status)}
