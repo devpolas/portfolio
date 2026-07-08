@@ -6,42 +6,37 @@ export default function useActiveSection() {
   const [activeId, setActiveId] = useState("home")
 
   useEffect(() => {
-    if (typeof window === "undefined") return
-
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("section[id]")
     )
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let closestSection = ""
-        let smallestDistance = Infinity
+    if (!sections.length) return
 
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return
+    const updateActive = () => {
+      const scroll = window.scrollY + window.innerHeight * 0.35
 
-          const distanceFromTop = Math.abs(entry.boundingClientRect.top)
+      let current = sections[0].id
 
-          if (distanceFromTop < smallestDistance) {
-            smallestDistance = distanceFromTop
-            closestSection = entry.target.id
-          }
-        })
-
-        if (closestSection) {
-          setActiveId(closestSection)
+      for (const section of sections) {
+        if (scroll >= section.offsetTop) {
+          current = section.id
+        } else {
+          break
         }
-      },
-      {
-        root: null,
-        rootMargin: "-30% 0px -60% 0px",
-        threshold: [0.1, 0.2, 0.3, 0.5],
       }
-    )
 
-    sections.forEach((section) => observer.observe(section))
+      setActiveId(current)
+    }
 
-    return () => observer.disconnect()
+    updateActive()
+
+    window.addEventListener("scroll", updateActive, { passive: true })
+    window.addEventListener("resize", updateActive)
+
+    return () => {
+      window.removeEventListener("scroll", updateActive)
+      window.removeEventListener("resize", updateActive)
+    }
   }, [])
 
   return activeId
