@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/card"
 import { Project } from "./data/project-data"
 import { FaGithub } from "react-icons/fa"
+import ProjectDialog from "./project-dialog"
 
 interface ProjectCardProps {
   project: Project
@@ -127,7 +128,17 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
         {/* Footer */}
 
-        <CardFooter className="grid grid-cols-2 gap-3">
+        <CardFooter className="grid grid-cols-3 gap-2">
+          <ProjectDialog project={project}>
+            <Button
+              variant="outline"
+              size="sm"
+              className="hover:cursor-pointer"
+            >
+              Details
+            </Button>
+          </ProjectDialog>
+
           <Button
             asChild
             variant={"secondary"}
