@@ -17,6 +17,7 @@ import {
 import { Project } from "./data/project-data"
 import { FaGithub } from "react-icons/fa"
 import ProjectDialog from "./project-dialog"
+import { getStatusBadge } from "./project-badge"
 
 interface ProjectCardProps {
   project: Project
@@ -66,11 +67,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           <div className="absolute top-4 left-4 flex gap-2">
             <Badge>{project.category}</Badge>
 
-            <Badge
-              variant={project.status === "completed" ? "secondary" : "default"}
-            >
-              {project.status === "completed" ? "Completed" : "In Progress"}
-            </Badge>
+            {getStatusBadge(project.status)}
           </div>
         </div>
 

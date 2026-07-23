@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { getStatusBadge } from "./project-badge"
 
 interface ProjectDialogProps {
   children: ReactNode
@@ -97,13 +98,7 @@ export default function ProjectDialog({
 
               <Badge variant="outline">{project.role}</Badge>
 
-              <Badge
-                variant={
-                  project.status === "completed" ? "secondary" : "default"
-                }
-              >
-                {project.status === "completed" ? "Completed" : "In Progress"}
-              </Badge>
+              {getStatusBadge(project.status)}
             </div>
           </motion.section>
 
