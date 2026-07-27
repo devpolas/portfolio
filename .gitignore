@@ -35,5 +35,11 @@ pnpm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+.claude
+.agents
+.windsurf
+.vscode
 
 /generated/prisma
+
+/app/generated/prisma
