@@ -2,18 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
-import { mainNavigation, navigationConfig } from "@/config/navigation";
+import { mainHomeNavigation, navigationConfig } from "@/config/navigation";
 import { cn } from "@/lib/utils";
-
-import Logo from "../logo";
-import { ThemeSwitcher } from "../theme/theme-switcher";
-import { LinkItem } from "./link-item";
-import MobileNav from "./mobile-nav";
-import { isRouteActive } from "./route-utils";
+import Logo from "../../logo";
+import { ThemeSwitcher } from "../../theme/theme-switcher";
+import { LinkItem } from "../link-item";
+import HomeMobileNavbar from "./mobile-home-navbar";
+import useActiveSectionId from "@/hooks/use-active-section";
 
 const SCROLL_THRESHOLD = 12;
 
@@ -25,8 +22,8 @@ const NAVBAR_HEIGHT = {
 // Keep this aligned with your page content containers.
 const CONTENT_WIDTH = "w-11/12 lg:w-10/12";
 
-const desktopNavigation = mainNavigation.filter(
-  ({ href }) => href !== navigationConfig.cta.href,
+const desktopNavigation = mainHomeNavigation.filter(
+  ({ href }) => href !== navigationConfig.homeCta.href,
 );
 
 function useIsScrolled(threshold = SCROLL_THRESHOLD) {
@@ -53,9 +50,9 @@ function useIsScrolled(threshold = SCROLL_THRESHOLD) {
   return isScrolled;
 }
 
-export default function Navbar() {
-  const pathname = usePathname();
+export default function HomeNavbar() {
   const isScrolled = useIsScrolled();
+  const activeId = useActiveSectionId();
 
   return (
     <header className='top-0 z-50 sticky w-full h-16 pointer-events-none'>
@@ -95,30 +92,34 @@ export default function Navbar() {
 
           <div className='flex items-center gap-2 shrink-0'>
             <div className='hidden lg:flex items-center gap-1'>
-              {desktopNavigation.map((item) => (
-                <LinkItem
-                  key={item.href}
-                  href={item.href}
-                  label={item.label}
-                  active={isRouteActive(pathname, item.href)}
-                />
-              ))}
+              {desktopNavigation.map((item) => {
+                const isActive = activeId === item.href.replace("/#", "");
+                return (
+                  <LinkItem
+                    key={item.href}
+                    href={item.href}
+                    label={item.label}
+                    active={isActive}
+                  />
+                );
+              })}
             </div>
 
             <Button
-              render={<Link href={navigationConfig.cta.href} />}
+              nativeButton={false}
+              render={<Link href={navigationConfig.homeCta.href} />}
               className={cn(
                 "hidden lg:inline-flex shadow-sm rounded-full",
                 "bg-brand text-brand-foreground hover:bg-brand/90",
                 "transition-colors",
               )}
             >
-              {navigationConfig.cta.label}
+              {navigationConfig.homeCta.label}
               <ArrowUpRight aria-hidden='true' className='size-4' />
             </Button>
 
             <ThemeSwitcher isScrolled={isScrolled} />
-            <MobileNav isScrolled={isScrolled} />
+            <HomeMobileNavbar isScrolled={isScrolled} />
           </div>
         </div>
       </nav>

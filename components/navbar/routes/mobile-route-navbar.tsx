@@ -13,10 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { mainNavigation, navigationConfig } from "@/config/navigation";
 import { cn } from "@/lib/utils";
-
 import { isRouteActive } from "./route-utils";
 
-export default function MobileNav({ isScrolled }: { isScrolled: boolean }) {
+export default function RouteMobileNavbar({
+  isScrolled,
+}: {
+  isScrolled: boolean;
+}) {
   const pathname = usePathname();
   const router = useRouter();
 

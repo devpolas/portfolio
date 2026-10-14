@@ -1,6 +1,7 @@
 export default function page() {
   return (
     <section>
+      <section id='/'>Portfolio</section>
       <p>Portfolio</p>
       <p>Portfolio</p>
       <p>Portfolio</p>
@@ -33,6 +34,75 @@ export default function page() {
       <p>Portfolio</p>
       <p>Portfolio</p>
       <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <section id='projects'>Projects</section>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <p>Portfolio</p>
+      <section id='about'>About</section>
       <p>Portfolio</p>
       <p>Portfolio</p>
       <p>Portfolio</p>

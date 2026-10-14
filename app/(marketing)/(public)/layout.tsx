@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar";
+import RouteNavbar from "@/components/navbar/routes/route-navbar";
 import type { ReactNode } from "react";
 
 export default function MainLayout({
@@ -8,8 +8,7 @@ export default function MainLayout({
 }>) {
   return (
     <main className='flex flex-col bg-background w-full min-h-screen'>
-      <Navbar />
-
+      <RouteNavbar />
       <div
         id='main-content'
         className={`w-11/12 lg:w-10/12 mx-auto flex-1 py-6`}
