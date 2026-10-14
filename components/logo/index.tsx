@@ -42,7 +42,7 @@ export default function Logo({
         priority={priority}
         sizes='(min-width: 1024px) 36px, 40px'
         className={cn(
-          "size-10 lg:size-8.5 object-contain shrink-0",
+          "size-6 xl:size-8 object-contain shrink-0",
           "transition-transform duration-200 ease-out",
           "motion-safe:group-hover:scale-105",
           imageClassName,
@@ -52,9 +52,9 @@ export default function Logo({
       {showName && (
         <span
           className={cn(
-            "hidden lg:flex -ml-1 font-extrabold text-3xl leading-none",
-            "tracking-[0.06em] text-foreground",
-            "transition-colors duration-200 text-brand/85 group-hover:text-brand",
+            "-ml-1 font-black text-2xl xl:text-3xl leading-none",
+            "tracking-[0.06em] brand-text-gradient",
+            "transition-colors duration-200 ",
             nameClassName,
           )}
         >

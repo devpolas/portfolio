@@ -28,7 +28,7 @@ const themes = [
   },
 ] as const;
 
-export function ThemeSwitcher() {
+export function ThemeSwitcher({ isScrolled }: { isScrolled: boolean }) {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -36,7 +36,7 @@ export function ThemeSwitcher() {
       <DropdownMenuTrigger
         render={
           <Button
-            size='icon-sm'
+            size='icon'
             variant='outline'
             className='relative hover:bg-brand/10 border-brand/20 hover:text-brand transition-colors hover:cursor-pointer'
           >
@@ -48,6 +48,7 @@ export function ThemeSwitcher() {
       />
 
       <DropdownMenuContent
+        sideOffset={isScrolled ? 12 : 15}
         align='end'
         className='bg-brand-surface border-brand/10 w-44'
       >

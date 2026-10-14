@@ -10,7 +10,10 @@ export default function MainLayout({
     <main className='flex flex-col bg-background w-full min-h-screen'>
       <Navbar />
 
-      <div className='flex-1 mx-auto px-4 py-6 w-full lg:max-w-10/12'>
+      <div
+        id='main-content'
+        className={`w-11/12 lg:w-10/12 mx-auto flex-1 py-6`}
+      >
         {children}
       </div>
 
