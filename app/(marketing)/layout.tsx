@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import type { ReactNode } from "react";
 
 export default function MainLayout({
@@ -7,9 +8,9 @@ export default function MainLayout({
 }>) {
   return (
     <main className='flex flex-col bg-background w-full min-h-screen'>
-      <header>{/* <Navbar /> */}</header>
+      <Navbar />
 
-      <div className='flex-1 mx-auto px-4 py-6 w-full max-w-7xl'>
+      <div className='flex-1 mx-auto px-4 py-6 w-full lg:max-w-10/12'>
         {children}
       </div>
 

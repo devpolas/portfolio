@@ -6,6 +6,7 @@ import "./globals.css";
 
 import { defaultMetadata, personJsonLd, websiteJsonLd } from "@/config/seo";
 import { siteConfig } from "@/config/site";
+import Provider from "@/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,8 +62,7 @@ export default function RootLayout({
           type='application/ld+json'
           dangerouslySetInnerHTML={jsonLdScript(websiteJsonLd)}
         />
-
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
