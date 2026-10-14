@@ -37,7 +37,7 @@ export const viewport: Viewport = {
   ],
 };
 
-function jsonLdScript(data: object) {
+function jsonLdScript(data: object): { __html: string } {
   return {
     __html: JSON.stringify(data).replace(/</g, "\\u003c"),
   };
