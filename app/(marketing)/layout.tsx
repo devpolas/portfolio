@@ -7,11 +7,13 @@ export default function MainLayout({
 }>) {
   return (
     <main className='flex flex-col bg-background w-full min-h-screen'>
-      {/* <Navbar /> */}
+      <header>{/* <Navbar /> */}</header>
 
-      <div className='flex-1 mx-auto p-4 w-full lg:max-w-11/12'>{children}</div>
+      <div className='flex-1 mx-auto px-4 py-6 w-full max-w-7xl'>
+        {children}
+      </div>
 
-      {/* <Footer /> */}
+      <footer>{/* <Footer /> */}</footer>
     </main>
   );
 }
