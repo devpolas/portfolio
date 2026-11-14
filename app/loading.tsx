@@ -1,50 +1,138 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import type { IconType } from "react-icons";
 import { cn } from "@/lib/utils";
 
-function Bone({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn("bg-muted motion-safe:animate-pulse", className)}
-      aria-hidden
-    />
-  );
-}
+import {
+  FaGithub,
+  FaLinkedin,
+  FaFacebook,
+  FaInstagram,
+  FaTelegram,
+  FaWhatsapp,
+} from "react-icons/fa";
 
-export default function Loading() {
+import {
+  SiX,
+  SiDevdotto,
+  SiMedium,
+  SiStackoverflow,
+  SiDiscord,
+  SiHashnode,
+} from "react-icons/si";
+
+const socialIcons: IconType[] = [
+  FaGithub,
+  FaLinkedin,
+  FaFacebook,
+  FaInstagram,
+  FaTelegram,
+  FaWhatsapp,
+  SiX,
+  SiDevdotto,
+  SiMedium,
+  SiStackoverflow,
+  SiDiscord,
+  SiHashnode,
+];
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+type LoadingProps = {
+  className?: string;
+  username?: string;
+  label?: string;
+};
+
+export default function Loading({
+  className,
+  username = "@devpolas",
+  label = "Loading portfolio...",
+}: LoadingProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (reduce) return;
+    const id = window.setInterval(
+      () => setActiveIndex((i) => (i + 1) % socialIcons.length),
+      900,
+    );
+    return () => window.clearInterval(id);
+  }, [reduce]);
+
+  const ActiveIcon = socialIcons[activeIndex];
+
   return (
     <div
       role='status'
       aria-busy='true'
-      aria-live='polite'
-      className='mx-auto px-4 py-16 max-w-6xl brand-glow-bg'
+      className={cn(
+        "isolate relative flex flex-col justify-center items-center gap-8 min-h-[60vh] overflow-hidden",
+        className,
+      )}
     >
-      <span className='sr-only'>Loading…</span>
+      <span className='sr-only'>{label}</span>
 
-      {/* Hero */}
-      <div className='items-center gap-10 grid md:grid-cols-2'>
-        <div className='space-y-4'>
-          <Bone className='rounded-full w-32 h-4' />
-          <Bone className='rounded-lg w-full max-w-md h-12' />
-          <Bone className='rounded-lg w-2/3 h-12' />
-          <Bone className='rounded w-full max-w-sm h-4' />
-          <Bone className='rounded w-4/5 max-w-sm h-4' />
-          <div className='flex gap-3 pt-2'>
-            <Bone className='bg-brand/20 rounded-lg w-32 h-10' />
-            <Bone className='rounded-lg w-28 h-10' />
-          </div>
+      {/* Breathing ambient glow */}
+      <motion.div
+        aria-hidden='true'
+        animate={
+          reduce ? undefined : { scale: [1, 1.25, 1], opacity: [0.5, 0.9, 0.5] }
+        }
+        transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+        className='top-1/2 left-1/2 -z-10 absolute bg-brand/15 blur-[100px] rounded-full size-56 -translate-x-1/2 -translate-y-1/2 pointer-events-none'
+      />
+
+      {/* Subtle dot-grid backdrop, masked to fade at the edges */}
+      <div
+        aria-hidden='true'
+        className='-z-10 absolute inset-0 bg-[radial-gradient(var(--foreground)_1px,transparent_1px)] opacity-[0.15] bg-size-[22px_22px] pointer-events-none mask-[radial-gradient(ellipse_at_center,black_10%,transparent_65%)]'
+      />
+
+      {/* Identity pill */}
+      <motion.div
+        initial={{ opacity: 0, y: 12, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.7, ease: EASE }}
+        className='flex items-center gap-4 sm:gap-5 bg-foreground/3 shadow-[0_8px_40px_-12px] shadow-brand/30 backdrop-blur-md py-2.5 sm:py-3 pr-6 sm:pr-8 pl-3 sm:pl-3.5 border border-foreground/10 rounded-full'
+      >
+        {/* Icon chip */}
+        <div
+          aria-hidden='true'
+          className='relative flex justify-center items-center bg-brand/10 rounded-full ring-1 ring-brand/25 size-12 sm:size-14 shrink-0'
+        >
+          <AnimatePresence mode='wait' initial={false}>
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, scale: 0.6, y: 8, filter: "blur(6px)" }}
+              animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 1.15, y: -8, filter: "blur(6px)" }}
+              transition={{ duration: 0.35, ease: EASE }}
+              className='absolute inset-0 flex justify-center items-center'
+            >
+              <ActiveIcon className='size-6 sm:size-7 text-brand' />
+            </motion.div>
+          </AnimatePresence>
         </div>
-        <Bone className='mx-auto rounded-full size-64 md:size-80' />
-      </div>
 
-      {/* Cards */}
-      <div className='gap-6 grid sm:grid-cols-2 lg:grid-cols-3 mt-16'>
-        {Array.from({ length: 3 }, (_, i) => (
-          <div key={i} className='space-y-3 p-5 glass'>
-            <Bone className='rounded-lg h-36' />
-            <Bone className='rounded w-3/4 h-5' />
-            <Bone className='rounded w-full h-4' />
-          </div>
-        ))}
-      </div>
+        <span className='font-bold text-xl sm:text-2xl tracking-tight loading-shimmer'>
+          {username}
+        </span>
+      </motion.div>
+
+      {/* Indeterminate progress bar */}
+      <motion.div
+        aria-hidden='true'
+        initial={{ opacity: 0, scaleX: 0.6 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ delay: 0.25, duration: 0.6, ease: EASE }}
+        className='relative bg-foreground/10 rounded-full w-40 sm:w-48 h-0.75 overflow-hidden'
+      >
+        <div className='left-0 absolute inset-y-0 bg-linear-to-r from-transparent via-brand to-brand-accent rounded-full w-2/5 loading-bar' />
+      </motion.div>
     </div>
   );
 }
