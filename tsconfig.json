@@ -30,7 +30,7 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "components/docs/rehype-code-meta.mjs"
+    "rehype-code-meta.mjs"
   ],
   "exclude": ["node_modules"]
 }

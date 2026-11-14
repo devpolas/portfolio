@@ -1,0 +1,56 @@
+export const metadata = {
+  title: "Callouts and tabs",
+  description: "Highlight important notes and show alternatives side by side.",
+};
+
+# Callouts and tabs
+
+## Callouts
+
+Use `type` to pick the style. Without `title`, the type name is the title.
+
+<Callout type="note">
+A note adds background information.
+</Callout>
+
+<Callout type="tip" title="Shortcut">
+A tip shows a faster way.
+</Callout>
+
+<Callout type="warning">
+A warning marks something that can go wrong.
+</Callout>
+
+<Callout type="danger" title="Cannot be undone">
+Danger is for actions that delete data.
+</Callout>
+
+## Tabs
+
+List the labels in `items`. The first `<Tab>` belongs to the first label, and so on.
+
+<Tabs items={["npm", "pnpm", "yarn"]} groupId="package-manager">
+<Tab>
+
+```bash
+npm install shiki
+```
+
+</Tab>
+<Tab>
+
+```bash
+pnpm add shiki
+```
+
+</Tab>
+<Tab>
+
+```bash
+yarn add shiki
+```
+
+</Tab>
+</Tabs>
+
+Tab groups with the same `groupId` switch together, and the choice is remembered.

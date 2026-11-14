@@ -1,0 +1,92 @@
+export const metadata = {
+  title: "Getting started",
+  description: "Install the package and render your first page.",
+};
+
+# Getting started
+
+This page shows every docs component. Plain Markdown works as usual:
+**bold**, `inline code`, [internal link](/about) and [external link](https://nextjs.org).
+
+## Install
+
+<Tabs items={["npm", "pnpm", "yarn"]} groupId="package-manager">
+<Tab>
+
+```bash
+npm install shiki
+```
+
+</Tab>
+<Tab>
+
+```bash
+pnpm add shiki
+```
+
+</Tab>
+<Tab>
+
+```bash
+yarn add shiki
+```
+
+</Tab>
+</Tabs>
+
+Pick `pnpm` once and every tab group with the same `groupId` follows.
+
+## Code blocks
+
+Add a file name, highlighted lines and line numbers after the language:
+
+```tsx title="app/page.tsx" {2,4-5} showLineNumbers
+export default function Page() {
+  const name = "docs";
+
+  return (
+    <h1>Hello {name}</h1>
+  );
+}
+```
+
+A block with only a language needs nothing else:
+
+```json
+{ "name": "portfolio", "private": true }
+```
+
+## Callouts
+
+<Callout type="note">
+Notes explain something extra.
+</Callout>
+
+<Callout type="tip" title="Faster builds">
+Tips suggest a better way to do something.
+</Callout>
+
+<Callout type="warning">
+Warnings point out something that can go wrong.
+</Callout>
+
+<Callout type="danger" title="Data loss">
+Danger is for actions that cannot be undone.
+</Callout>
+
+## Table
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `type` | `"note" \| "tip" \| "warning" \| "danger"` | `"note"` |
+| `title` | `string` | the type name |
+
+## Lists and quotes
+
+- First item
+- Second item
+
+1. Step one
+2. Step two
+
+> A quote looks like this.

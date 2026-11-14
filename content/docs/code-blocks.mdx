@@ -1,0 +1,49 @@
+export const metadata = {
+  title: "Code blocks",
+  description: "Show code with a file name, highlighted lines and line numbers.",
+};
+
+# Code blocks
+
+Fenced code blocks turn into a `CodeBlock` with syntax highlighting and a copy button.
+
+## Basic block
+
+```ts
+const answer = 42;
+```
+
+## File name
+
+Add `title="..."` after the language to show a file name in the header.
+
+```tsx title="components/hello.tsx"
+export function Hello() {
+  return <p>Hello</p>;
+}
+```
+
+## Highlight lines
+
+Add line numbers or ranges in curly braces. Line 1 is the first line.
+
+```ts {2,4-5}
+const a = 1;
+const b = 2;
+const c = 3;
+const d = 4;
+const e = 5;
+```
+
+## Line numbers
+
+Add `showLineNumbers` to number the lines.
+
+```bash showLineNumbers
+pnpm install
+pnpm dev
+```
+
+## Languages
+
+These are available: `bash`, `css`, `diff`, `html`, `javascript`, `json`, `jsx`, `markdown`, `python`, `sql`, `tsx`, `typescript`, `yaml`. Other languages show as plain text. Add more in `lib/highlighter.tsx`.

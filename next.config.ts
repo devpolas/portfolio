@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
@@ -39,7 +40,9 @@ const withMDX = createMDX({
     remarkPlugins: [],
     rehypePlugins: [
       ["rehype-slug"],
-      ["./components/docs/rehype-code-meta.mjs"],
+      // Absolute path: the MDX loader runs from inside node_modules, so a
+      // "./..." path is resolved from there and is not found.
+      [path.join(process.cwd(), "rehype-code-meta.mjs")],
     ],
   },
 });
