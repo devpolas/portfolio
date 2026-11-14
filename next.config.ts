@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   /* config options here */
+
+  // Lets Next.js treat .md and .mdx files as pages.
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+
   images: {
     remotePatterns: [
       {
@@ -29,4 +34,14 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [
+      ["rehype-slug"],
+      ["./components/docs/rehype-code-meta.mjs"],
+    ],
+  },
+});
+
+export default withMDX(nextConfig);

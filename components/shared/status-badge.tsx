@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock3 } from "lucide-react";
+import { BadgeCheck, CheckCircle2, Clock3 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,7 @@ const config = {
   },
   certified: {
     label: "Certified",
-    icon: CheckCircle2,
+    icon: BadgeCheck,
     className: "border-brand/25 bg-brand/10 text-brand",
   },
   "in-progress": {
@@ -28,11 +28,14 @@ export function StatusBadge({
   overlay = false,
 }: {
   status: Status;
-  overlay?: boolean; // use on top of images
+  /** Use on top of images */
+  overlay?: boolean;
 }) {
-  const c = config[status];
+  // Kept on purpose: status may come from a CMS/API and not match the type.
+  const c = config[status] as (typeof config)[Status] | undefined;
   if (!c) return null;
   const Icon = c.icon;
+
   return (
     <Badge
       variant='outline'
@@ -42,7 +45,7 @@ export function StatusBadge({
         overlay && "bg-background/85 backdrop-blur-sm",
       )}
     >
-      <Icon aria-hidden className='size-3.5' />
+      <Icon aria-hidden='true' className='size-3.5' />
       {c.label}
     </Badge>
   );

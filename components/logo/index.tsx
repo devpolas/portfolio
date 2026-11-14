@@ -1,33 +1,38 @@
+import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
-type LogoProps = {
+const BRAND_NAME = "devpolas";
+const LOGO_IMAGE = "/logo.webp";
+
+type LogoProps = Omit<
+  React.ComponentProps<typeof Link>,
+  "href" | "children"
+> & {
   href?: string;
   showName?: boolean;
-  className?: string;
+  priority?: boolean;
   imageClassName?: string;
   nameClassName?: string;
-  priority?: boolean;
 };
-
-const LOGO_IMAGE = "/logo.webp";
 
 export default function Logo({
   href = "/",
   showName = true,
+  priority = false,
   className,
   imageClassName,
   nameClassName,
-  priority = false,
+  ...props
 }: LogoProps) {
   return (
     <Link
       href={href}
-      aria-label='POLAS home'
+      {...props}
       className={cn(
-        "group inline-flex items-center w-fit shrink-0",
+        "group inline-flex items-center gap-2 xl:gap-2.5 w-fit shrink-0",
         "rounded-md outline-none",
         "focus-visible:ring-2 focus-visible:ring-brand",
         "focus-visible:ring-offset-2 focus-visible:ring-offset-background",
@@ -36,11 +41,14 @@ export default function Logo({
     >
       <Image
         src={LOGO_IMAGE}
-        alt='logo'
-        width={40}
-        height={40}
+        // The name next to it already labels the link, so the image is decorative.
+        // Without the visible name, the sr-only text below provides the label.
+        alt=''
+        width={64}
+        height={64}
         priority={priority}
-        sizes='(min-width: 1024px) 36px, 40px'
+        // Must match the rendered size (size-6 = 24px, xl:size-8 = 32px).
+        sizes='(min-width: 1280px) 32px, 24px'
         className={cn(
           "size-6 xl:size-8 object-contain shrink-0",
           "transition-transform duration-200 ease-out",
@@ -49,17 +57,20 @@ export default function Logo({
         )}
       />
 
-      {showName && (
+      {showName ? (
         <span
           className={cn(
-            "font-black text-2xl xl:text-3xl leading-none",
-            "tracking-[0.06em] brand-text-gradient",
-            "transition-colors duration-200 ",
+            "font-black text-2xl xl:text-3xl",
+            // leading-none would clip the descender of "p" with bg-clip-text.
+            "leading-[1.1] tracking-[0.06em] brand-text-gradient",
+            "select-none",
             nameClassName,
           )}
         >
-          devpolas
+          {BRAND_NAME}
         </span>
+      ) : (
+        <span className='sr-only'>{BRAND_NAME} home</span>
       )}
     </Link>
   );

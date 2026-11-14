@@ -5,9 +5,11 @@ import { motion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 import { fadeUp, viewportOnce } from "@/lib/motion";
+import { useSectionId } from "./section-context";
 
 interface SectionHeadingProps {
-  id: string;
+  /** Optional. Defaults to the id of the parent <Section>. */
+  id?: string;
   eyebrow: string;
   title: ReactNode;
   description: string;
@@ -23,6 +25,8 @@ export function SectionHeading({
   align = "center",
   action,
 }: SectionHeadingProps) {
+  const sectionId = useSectionId();
+  const resolvedId = id ?? sectionId;
   const centered = align === "center";
 
   return (
@@ -51,7 +55,10 @@ export function SectionHeading({
           {eyebrow}
         </p>
 
-        <h2 id={`${id}-heading`} className='font-bold text-section-title'>
+        <h2
+          id={resolvedId ? `${resolvedId}-heading` : undefined}
+          className='font-bold text-section-title'
+        >
           {title}
         </h2>
 

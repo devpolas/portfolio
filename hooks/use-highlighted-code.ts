@@ -1,75 +1,109 @@
-import * as React from "react"
+import * as React from "react";
 
-import { loadHighlighter } from "@/lib/highlighter"
+import {
+  getLoadedHighlighter,
+  loadHighlighter,
+  type CodeHighlighter,
+} from "@/components/docs/highlighter";
+import type { GrammarState } from "shiki/core";
 
-export function useHighlightedCode(value: string, language: string) {
-  // A trailing newline would render as an extra empty line.
-  const code = value.endsWith("\n") ? value.slice(0, -1) : value
-  const [loaded, setLoaded] = React.useState<{
-    language: string
-    highlighter: Awaited<ReturnType<typeof loadHighlighter>>
-  } | null>(null)
-  const highlighter = loaded?.language === language ? loaded.highlighter : null
+/**
+ * Returns the highlighter for a language, or null while it loads (or if the
+ * language is not supported). Languages that were loaded before are returned
+ * on the very first render, so there is no plain-text flash.
+ */
+function useHighlighter(language: string) {
+  const [, rerender] = React.useReducer((n: number) => n + 1, 0);
 
   React.useEffect(() => {
-    let cancelled = false
+    if (getLoadedHighlighter(language)) return;
+
+    let cancelled = false;
 
     loadHighlighter(language)
-      .then((next) => {
-        if (!cancelled) {
-          setLoaded({ language, highlighter: next })
-        }
+      .then(() => {
+        if (!cancelled) rerender();
       })
-      .catch(() => {})
+      .catch((error) => {
+        if (process.env.NODE_ENV !== "production") {
+          console.warn(`Could not load highlighter for "${language}"`, error);
+        }
+      });
 
     return () => {
-      cancelled = true
+      cancelled = true;
+    };
+  }, [language]);
+
+  return getLoadedHighlighter(language);
+}
+
+type Cache = {
+  highlighter: CodeHighlighter | null;
+  /** The text that `lines` covers. Always ends with "\n" (or is empty). */
+  text: string;
+  lines: React.ReactNode[];
+  state: GrammarState | undefined;
+};
+
+const emptyCache: Cache = {
+  highlighter: null,
+  text: "",
+  lines: [],
+  state: undefined,
+};
+
+/**
+ * Highlights code line by line. While the code streams in, finished lines are
+ * tokenized once (continuing from the previous grammar state) and only the
+ * line still being written is tokenized again on each update.
+ *
+ * Returns one React node per line. Without a highlighter it returns plain
+ * strings, so the layout stays the same.
+ */
+export function useHighlightedCode(value: string, language: string) {
+  // Skip intermediate updates when the stream is faster than React can render.
+  const deferred = React.useDeferredValue(value);
+
+  // A trailing newline would render as an extra empty line.
+  const code = deferred.endsWith("\n") ? deferred.slice(0, -1) : deferred;
+
+  const highlighter = useHighlighter(language);
+  const cache = React.useRef<Cache>(emptyCache);
+
+  return React.useMemo<React.ReactNode[]>(() => {
+    if (!highlighter) return code.split("\n");
+
+    let current = cache.current;
+
+    // Reset when the highlighter changed or the code was edited, not appended.
+    if (current.highlighter !== highlighter || !code.startsWith(current.text)) {
+      current = { highlighter, text: "", lines: [], state: undefined };
     }
-  }, [language])
 
-  // The complete lines, highlighted. While the code streams, only the new
-  // lines are tokenized, starting from the grammar state of the last one.
-  const [done, setDone] = React.useState<{
-    highlighter: typeof highlighter
-    text: string
-    lines: React.ReactNode[]
-    state?: Parameters<NonNullable<typeof highlighter>["highlight"]>[1]
-  }>({ highlighter: null, text: "", lines: [] })
+    // Index right after the last "\n": everything before it is complete.
+    const end = code.lastIndexOf("\n") + 1;
 
-  let next = done
+    if (end > current.text.length) {
+      const result = highlighter.highlight(
+        code.slice(current.text.length, end - 1),
+        current.state,
+      );
 
-  if (next.highlighter !== highlighter || !code.startsWith(next.text)) {
-    next = { highlighter, text: "", lines: [] }
-  }
-
-  const end = code.lastIndexOf("\n") + 1
-
-  if (highlighter && end > next.text.length) {
-    const result = highlighter.highlight(
-      code.slice(next.text.length, end - 1),
-      next.state
-    )
-
-    next = {
-      highlighter,
-      text: code.slice(0, end),
-      lines: [...next.lines, ...result.lines],
-      state: result.state,
-    }
-  }
-
-  if (next !== done) {
-    setDone(next)
-  }
-
-  // The last line is still being written, so it is tokenized on every render.
-  const tail = code.slice(end)
-
-  return React.useMemo(() => {
-    if (!highlighter) {
-      return code.split("\n")
+      current = {
+        highlighter,
+        text: code.slice(0, end),
+        lines: [...current.lines, ...result.lines],
+        state: result.state,
+      };
     }
 
-    return [...next.lines, highlighter.highlight(tail, next.state).lines[0]]
-  }, [code, highlighter, next, tail])
+    // Safe to write: the same input always produces the same cache.
+    cache.current = current;
+
+    // The last line is still being written, so it is never cached.
+    const tail = highlighter.highlight(code.slice(end), current.state).lines[0];
+
+    return [...current.lines, tail];
+  }, [code, highlighter]);
 }
