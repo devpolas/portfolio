@@ -1,5 +1,4 @@
 // use prisma-8
-
 // ENUMS
 enum ProjectCategory {
   FULL_STACK
@@ -75,12 +74,19 @@ enum TestimonialStatus {
 }
 
 types {
+  // 1536 matches OpenAI text-embedding-3-small. Change it with your model.
   Embedding1536 = pgvector.Vector(1536)
+
+  // Shared column shapes, so each model does not repeat them.
+  Uuid7 = Uuid @onCreate(uuid(7))
+  StringId = String @onCreate(uuid(7))
+  CreatedAt = DateTime @default(now())
+  UpdatedAt = DateTime @default(now()) @onCreate(now()) @onUpdate(now())
 }
 
 // BETTER AUTH
 model User {
-  id            String     @id @onCreate(uuid(7))
+  id            StringId   @id
   name          String
   email         String     @unique
   emailVerified Boolean    @default(false)
@@ -92,8 +98,8 @@ model User {
   blogPosts     BlogPost[]
   auditLogs     AuditLog[]
 
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt     CreatedAt
+  updatedAt     UpdatedAt
 
   @@index([createdAt])
 
@@ -101,17 +107,17 @@ model User {
 }
 
 model Session {
-  id        String   @id @onCreate(uuid(7))
+  id        StringId  @id
   expiresAt DateTime
-  token     String   @unique
+  token     String    @unique
   ipAddress String?
   userAgent String?
 
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt CreatedAt
+  updatedAt UpdatedAt
 
   @@index([userId, expiresAt])
 
@@ -119,7 +125,7 @@ model Session {
 }
 
 model Account {
-  id                    String    @id @onCreate(uuid(7))
+  id                    StringId  @id
   accountId             String
   providerId            String
   userId                String
@@ -134,8 +140,8 @@ model Account {
 
   user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt             CreatedAt
+  updatedAt             UpdatedAt
 
   @@unique([providerId, accountId])
   @@index([userId])
@@ -144,13 +150,13 @@ model Account {
 }
 
 model Verification {
-  id         String   @id @onCreate(uuid(7))
+  id         StringId  @id
   identifier String
   value      String
   expiresAt  DateTime
 
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt  CreatedAt
+  updatedAt  UpdatedAt
 
   @@index([identifier, expiresAt])
 
@@ -159,7 +165,7 @@ model Verification {
 
 // PROFILE
 model Profile {
-  // A singleton profile record.
+  // A singleton profile record: every row uses the id "main".
   id            String            @id @default("main")
 
   name          String
@@ -190,28 +196,28 @@ model Profile {
   languages     ProfileLanguage[]
   items         ProfileItem[]
 
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt     CreatedAt
+  updatedAt     UpdatedAt
 
   @@map("profiles")
 }
 
 model SocialLink {
-  id        Uuid     @id @onCreate(uuid(7))
+  id        Uuid7     @id
 
   platform  String
   label     String?
   url       String
   username  String?
   icon      String?
-  sortOrder Int      @default(0)
-  isVisible Boolean  @default(true)
+  sortOrder Int       @default(0)
+  isVisible Boolean   @default(true)
 
-  profileId String   @default("main")
-  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId String    @default("main")
+  profile   Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt CreatedAt
+  updatedAt UpdatedAt
 
   @@unique([profileId, platform])
   @@index([profileId, isVisible, sortOrder])
@@ -220,19 +226,19 @@ model SocialLink {
 }
 
 model ProfileLanguage {
-  id          Uuid     @id @onCreate(uuid(7))
+  id          Uuid7     @id
 
   name        String
   code        String?
   proficiency String?
-  sortOrder   Int      @default(0)
-  isVisible   Boolean  @default(true)
+  sortOrder   Int       @default(0)
+  isVisible   Boolean   @default(true)
 
-  profileId   String   @default("main")
-  profile     Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId   String    @default("main")
+  profile     Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt   CreatedAt
+  updatedAt   UpdatedAt
 
   @@index([profileId, isVisible, sortOrder])
 
@@ -240,7 +246,7 @@ model ProfileLanguage {
 }
 
 model ProfileItem {
-  id          Uuid            @id @onCreate(uuid(7))
+  id          Uuid7           @id
 
   type        ProfileItemType
   title       String
@@ -251,8 +257,8 @@ model ProfileItem {
   profileId   String          @default("main")
   profile     Profile         @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt   CreatedAt
+  updatedAt   UpdatedAt
 
   @@index([profileId, type, isVisible, sortOrder])
 
@@ -261,18 +267,18 @@ model ProfileItem {
 
 // SKILLS
 model SkillGroup {
-  id          Uuid     @id @onCreate(uuid(7))
+  id          Uuid7     @id
 
   name        String
-  slug        String   @unique
+  slug        String    @unique
   description String?
-  sortOrder   Int      @default(0)
-  isVisible   Boolean  @default(true)
+  sortOrder   Int       @default(0)
+  isVisible   Boolean   @default(true)
 
   skills      Skill[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt   CreatedAt
+  updatedAt   UpdatedAt
 
   @@index([isVisible, sortOrder])
 
@@ -280,7 +286,7 @@ model SkillGroup {
 }
 
 model Skill {
-  id                  Uuid                 @id @onCreate(uuid(7))
+  id                  Uuid7                @id
 
   name                String
   slug                String               @unique
@@ -300,18 +306,19 @@ model Skill {
   certificationSkills CertificationSkill[]
   experienceSkills    ExperienceSkill[]
 
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt           CreatedAt
+  updatedAt           UpdatedAt
 
   @@index([groupId, isVisible, sortOrder])
   @@index([isFeatured, isVisible])
 
+  @@check(expression: sql`"proficiency" IS NULL OR "proficiency" BETWEEN 0 AND 100`, name: "skill_proficiency_range")
   @@map("skills")
 }
 
 // PROJECTS
 model Project {
-  id           Uuid            @id @onCreate(uuid(7))
+  id           Uuid7           @id
 
   title        String
   slug         String          @unique
@@ -341,8 +348,8 @@ model Project {
   links        ProjectLink[]
   views        ProjectView[]
 
-  createdAt    DateTime        @default(now())
-  updatedAt    DateTime        @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt    CreatedAt
+  updatedAt    UpdatedAt
 
   @@index([published, featured, sortOrder])
   @@index([published, category, sortOrder])
@@ -368,7 +375,7 @@ model ProjectSkill {
 }
 
 model ProjectLink {
-  id        Uuid            @id @onCreate(uuid(7))
+  id        Uuid7           @id
 
   type      ProjectLinkType
   label     String
@@ -378,8 +385,8 @@ model ProjectLink {
   projectId Uuid
   project   Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt CreatedAt
+  updatedAt UpdatedAt
 
   @@unique([projectId, url])
   @@index([projectId, sortOrder])
@@ -389,7 +396,7 @@ model ProjectLink {
 
 // CERTIFICATIONS
 model Certification {
-  id            Uuid                 @id @onCreate(uuid(7))
+  id            Uuid7                @id
 
   name          String
   issuer        String
@@ -409,12 +416,13 @@ model Certification {
 
   skills        CertificationSkill[]
 
-  createdAt     DateTime             @default(now())
-  updatedAt     DateTime             @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt     CreatedAt
+  updatedAt     UpdatedAt
 
   @@index([isVisible, sortOrder])
   @@index([issueDate])
 
+  @@check(expression: sql`"expiryDate" IS NULL OR "issueDate" IS NULL OR "expiryDate" >= "issueDate"`, name: "certification_dates_order")
   @@map("certifications")
 }
 
@@ -433,7 +441,7 @@ model CertificationSkill {
 
 // EXPERIENCE
 model Experience {
-  id               Uuid              @id @onCreate(uuid(7))
+  id               Uuid7             @id
 
   company          String
   position         String
@@ -459,12 +467,14 @@ model Experience {
 
   skills           ExperienceSkill[]
 
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt        CreatedAt
+  updatedAt        UpdatedAt
 
   @@index([isVisible, sortOrder])
   @@index([isCurrent, startDate])
 
+  @@check(expression: sql`"endDate" IS NULL OR "endDate" >= "startDate"`, name: "experience_dates_order")
+  @@check(expression: sql`NOT "isCurrent" OR "endDate" IS NULL`, name: "experience_current_has_no_end")
   @@map("experiences")
 }
 
@@ -483,7 +493,7 @@ model ExperienceSkill {
 
 // EDUCATION
 model Education {
-  id                Uuid            @id @onCreate(uuid(7))
+  id                Uuid7           @id
 
   institution       String
   degree            String
@@ -504,18 +514,19 @@ model Education {
   sortOrder         Int             @default(0)
   isVisible         Boolean         @default(true)
 
-  createdAt         DateTime        @default(now())
-  updatedAt         DateTime        @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt         CreatedAt
+  updatedAt         UpdatedAt
 
   @@index([isVisible, sortOrder])
   @@index([startDate])
 
+  @@check(expression: sql`"endDate" IS NULL OR "endDate" >= "startDate"`, name: "education_dates_order")
   @@map("educations")
 }
 
 // CONTACT MESSAGES
 model ContactMessage {
-  id        Uuid                 @id @onCreate(uuid(7))
+  id        Uuid7                @id
 
   name      String
   email     String
@@ -527,8 +538,8 @@ model ContactMessage {
   readAt    DateTime?
   repliedAt DateTime?
 
-  createdAt DateTime             @default(now())
-  updatedAt DateTime             @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt CreatedAt
+  updatedAt UpdatedAt
 
   @@index([status, createdAt])
 
@@ -537,7 +548,7 @@ model ContactMessage {
 
 // MEDIA ASSETS
 model MediaAsset {
-  id                  Uuid            @id @onCreate(uuid(7))
+  id                  Uuid7           @id
 
   name                String
   url                 String
@@ -571,8 +582,8 @@ model MediaAsset {
   testimonialAvatars  Testimonial[]   @relation("TestimonialAvatar")
   seoImages           PageSeo[]       @relation("SeoOgImage")
 
-  createdAt           DateTime        @default(now())
-  updatedAt           DateTime        @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt           CreatedAt
+  updatedAt           UpdatedAt
 
   @@unique([provider, publicId])
   @@index([kind, createdAt])
@@ -582,7 +593,7 @@ model MediaAsset {
 }
 
 model ProjectImage {
-  id           Uuid       @id @onCreate(uuid(7))
+  id           Uuid7      @id
 
   altText      String?
   caption      String?
@@ -594,18 +605,19 @@ model ProjectImage {
   mediaAssetId Uuid
   mediaAsset   MediaAsset @relation(fields: [mediaAssetId], references: [id], onDelete: Restrict)
 
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt    CreatedAt
+  updatedAt    UpdatedAt
 
-  @@unique([projectId, sortOrder])
   @@unique([projectId, mediaAssetId])
+  @@index([projectId, sortOrder])
+  @@index([mediaAssetId])
 
   @@map("project_images")
 }
 
 // TESTIMONIALS
 model Testimonial {
-  id         Uuid              @id @onCreate(uuid(7))
+  id         Uuid7             @id
 
   name       String
   role       String?
@@ -621,17 +633,17 @@ model Testimonial {
   avatarId   Uuid?
   avatar     MediaAsset?       @relation("TestimonialAvatar", fields: [avatarId], references: [id], onDelete: SetNull)
 
-  createdAt  DateTime          @default(now())
-  updatedAt  DateTime          @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt  CreatedAt
+  updatedAt  UpdatedAt
 
   @@index([status, featured, sortOrder])
 
   @@map("testimonials")
 }
 
-// BLOG CATEGORIES
+// BLOG
 model BlogCategory {
-  id          Uuid       @id @onCreate(uuid(7))
+  id          Uuid7      @id
 
   name        String
   slug        String     @unique
@@ -642,32 +654,30 @@ model BlogCategory {
 
   posts       BlogPost[]
 
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt   CreatedAt
+  updatedAt   UpdatedAt
 
   @@index([isVisible, sortOrder])
 
   @@map("blog_categories")
 }
 
-// BLOG TAGS
 model BlogTag {
-  id        Uuid          @id @onCreate(uuid(7))
+  id        Uuid7         @id
 
   name      String
   slug      String        @unique
 
   posts     BlogPostTag[]
 
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt CreatedAt
+  updatedAt UpdatedAt
 
   @@map("blog_tags")
 }
 
-// BLOG POSTS
 model BlogPost {
-  id           Uuid           @id @onCreate(uuid(7))
+  id           Uuid7          @id
 
   title        String
   slug         String         @unique
@@ -692,8 +702,8 @@ model BlogPost {
 
   tags         BlogPostTag[]
 
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt    CreatedAt
+  updatedAt    UpdatedAt
 
   @@index([status, publishedAt])
   @@index([categoryId, status, publishedAt])
@@ -719,7 +729,7 @@ model BlogPostTag {
 
 // PAGE SEO
 model PageSeo {
-  id            Uuid        @id @onCreate(uuid(7))
+  id            Uuid7       @id
 
   path          String      @unique
 
@@ -737,15 +747,15 @@ model PageSeo {
   ogImageId     Uuid?
   ogImage       MediaAsset? @relation("SeoOgImage", fields: [ogImageId], references: [id], onDelete: SetNull)
 
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt     CreatedAt
+  updatedAt     UpdatedAt
 
-  @@map("page_sees")
+  @@map("page_seos")
 }
 
 // NEWSLETTER
 model NewsletterSubscriber {
-  id                    Uuid             @id @onCreate(uuid(7))
+  id                    Uuid7            @id
 
   email                 String           @unique
 
@@ -760,8 +770,8 @@ model NewsletterSubscriber {
   confirmedAt           DateTime?
   unsubscribedAt        DateTime?
 
-  createdAt             DateTime         @default(now())
-  updatedAt             DateTime         @default(now()) @onCreate(now()) @onUpdate(now())
+  createdAt             CreatedAt
+  updatedAt             UpdatedAt
 
   @@index([status, createdAt])
 
@@ -770,7 +780,7 @@ model NewsletterSubscriber {
 
 // AUDIT LOGS
 model AuditLog {
-  id         Uuid     @id @onCreate(uuid(7))
+  id         Uuid7     @id
 
   action     String
   entityType String
@@ -779,9 +789,9 @@ model AuditLog {
   metadata   Jsonb?
 
   userId     String?
-  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  user       User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
 
-  createdAt  DateTime @default(now())
+  createdAt  CreatedAt
 
   @@index([userId, createdAt])
   @@index([entityType, entityId, createdAt])
@@ -790,9 +800,9 @@ model AuditLog {
   @@map("audit_logs")
 }
 
-// PAGE ANALYTICS
+// ANALYTICS
 model PageView {
-  id          Uuid     @id @onCreate(uuid(7))
+  id          Uuid7    @id
 
   path        String
   referrer    String?
@@ -809,9 +819,8 @@ model PageView {
   @@map("page_views")
 }
 
-// PROJECT ANALYTICS
 model ProjectView {
-  id          Uuid     @id @onCreate(uuid(7))
+  id          Uuid7    @id
 
   projectId   Uuid
   project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
@@ -828,12 +837,36 @@ model ProjectView {
   @@map("project_views")
 }
 
+// AI SEARCH
 model PortfolioEmbedding {
-  // Fields
-  id        String         @id @onCreate(uuid())
+  id        Uuid7          @id
   content   String?
   metadata  Json?
   embedding Embedding1536?
 
+  createdAt CreatedAt
+
   @@map("portfolio_embeddings")
+}
+
+// DOCUMENTATION
+model Doc {
+  id          Uuid7     @id
+
+  slug        String    @unique
+  title       String
+  description String?
+  content     String
+
+  section     String    @default("General")
+  sortOrder   Int       @default(0)
+  published   Boolean   @default(false)
+
+  createdAt   CreatedAt
+  updatedAt   UpdatedAt
+
+  @@index([published, sortOrder])
+  @@fullTextIndex([title, description, content], name: "doc_search")
+
+  @@map("docs")
 }

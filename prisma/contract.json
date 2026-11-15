@@ -40,6 +40,10 @@
       "model": "ContactMessage",
       "namespace": "public"
     },
+    "docs": {
+      "model": "Doc",
+      "namespace": "public"
+    },
     "educations": {
       "model": "Education",
       "namespace": "public"
@@ -60,7 +64,7 @@
       "model": "NewsletterSubscriber",
       "namespace": "public"
     },
-    "page_sees": {
+    "page_seos": {
       "model": "PageSeo",
       "namespace": "public"
     },
@@ -1433,6 +1437,117 @@
               "table": "contact_messages"
             }
           },
+          "Doc": {
+            "fields": {
+              "content": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "createdAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "kind": "scalar"
+                }
+              },
+              "description": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/uuid@1",
+                  "kind": "scalar"
+                }
+              },
+              "published": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/bool@1",
+                  "kind": "scalar"
+                }
+              },
+              "section": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "slug": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "sortOrder": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              },
+              "title": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "updatedAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "fields": {
+                "content": {
+                  "column": "content"
+                },
+                "createdAt": {
+                  "column": "createdAt"
+                },
+                "description": {
+                  "column": "description"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "published": {
+                  "column": "published"
+                },
+                "section": {
+                  "column": "section"
+                },
+                "slug": {
+                  "column": "slug"
+                },
+                "sortOrder": {
+                  "column": "sortOrder"
+                },
+                "title": {
+                  "column": "title"
+                },
+                "updatedAt": {
+                  "column": "updatedAt"
+                }
+              },
+              "namespaceId": "public",
+              "table": "docs"
+            }
+          },
           "Education": {
             "fields": {
               "createdAt": {
@@ -2516,7 +2631,7 @@
                 }
               },
               "namespaceId": "public",
-              "table": "page_sees"
+              "table": "page_seos"
             }
           },
           "PageView": {
@@ -2599,6 +2714,13 @@
                   "kind": "scalar"
                 }
               },
+              "createdAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "kind": "scalar"
+                }
+              },
               "embedding": {
                 "nullable": true,
                 "type": {
@@ -2612,7 +2734,7 @@
               "id": {
                 "nullable": false,
                 "type": {
-                  "codecId": "pg/text@1",
+                  "codecId": "pg/uuid@1",
                   "kind": "scalar"
                 }
               },
@@ -2629,6 +2751,9 @@
               "fields": {
                 "content": {
                   "column": "content"
+                },
+                "createdAt": {
+                  "column": "createdAt"
                 },
                 "embedding": {
                   "column": "embedding"
@@ -5581,6 +5706,13 @@
               "uniques": []
             },
             "certifications": {
+              "checks": [
+                {
+                  "expression": "\"expiryDate\" IS NULL OR \"issueDate\" IS NULL OR \"expiryDate\" >= \"issueDate\"",
+                  "name": "certification_dates_order_b062c6da",
+                  "prefix": "certification_dates_order"
+                }
+              ],
               "columns": {
                 "createdAt": {
                   "codecId": "pg/timestamptz-temporal@1",
@@ -5817,8 +5949,136 @@
               },
               "uniques": []
             },
+            "docs": {
+              "columns": {
+                "content": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "createdAt": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "dataType": "pg/timestamptz",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nullable": false
+                },
+                "description": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "id": {
+                  "codecId": "pg/uuid@1",
+                  "dataType": "pg/uuid",
+                  "nullable": false
+                },
+                "published": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "default": {
+                    "kind": "literal",
+                    "value": false
+                  },
+                  "nullable": false
+                },
+                "section": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": "General"
+                  },
+                  "nullable": false
+                },
+                "slug": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "sortOrder": {
+                  "codecId": "pg/int4@1",
+                  "dataType": "pg/int4",
+                  "default": {
+                    "kind": "literal",
+                    "value": 0
+                  },
+                  "nullable": false
+                },
+                "title": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "updatedAt": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "dataType": "pg/timestamptz",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [
+                {
+                  "columns": [
+                    "title",
+                    "description",
+                    "content"
+                  ],
+                  "name": "doc_search_904db426",
+                  "options": {
+                    "language": "english",
+                    "weightGroups": [
+                      [
+                        "title"
+                      ],
+                      [
+                        "description"
+                      ],
+                      [
+                        "content"
+                      ]
+                    ]
+                  },
+                  "prefix": "doc_search",
+                  "type": "fullText",
+                  "unique": false
+                },
+                {
+                  "columns": [
+                    "published",
+                    "sortOrder"
+                  ],
+                  "name": "docs_published_sortOrder_idx_190324ae",
+                  "prefix": "docs_published_sortOrder_idx",
+                  "unique": false
+                }
+              ],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": [
+                {
+                  "columns": [
+                    "slug"
+                  ]
+                }
+              ]
+            },
             "educations": {
               "checks": [
+                {
+                  "expression": "\"endDate\" IS NULL OR \"endDate\" >= \"startDate\"",
+                  "name": "education_dates_order_5299bb00",
+                  "prefix": "education_dates_order"
+                },
                 {
                   "expression": "\"status\" IN ('COMPLETED', 'IN_PROGRESS', 'PAUSED')",
                   "name": "educations_status_check_20669d57",
@@ -6072,6 +6332,16 @@
             },
             "experiences": {
               "checks": [
+                {
+                  "expression": "NOT \"isCurrent\" OR \"endDate\" IS NULL",
+                  "name": "experience_current_has_no_end_3ea71e19",
+                  "prefix": "experience_current_has_no_end"
+                },
+                {
+                  "expression": "\"endDate\" IS NULL OR \"endDate\" >= \"startDate\"",
+                  "name": "experience_dates_order_5299bb00",
+                  "prefix": "experience_dates_order"
+                },
                 {
                   "expression": "array_position(\"achievements\", NULL) IS NULL",
                   "name": "experiences_achievements_elem_not_null_2e6081d8",
@@ -6545,7 +6815,7 @@
                 }
               ]
             },
-            "page_sees": {
+            "page_seos": {
               "columns": {
                 "canonicalUrl": {
                   "codecId": "pg/text@1",
@@ -6627,7 +6897,7 @@
               "foreignKeys": [
                 {
                   "index": {
-                    "name": "page_sees_ogImageId_idx_6e14f7ca"
+                    "name": "page_seos_ogImageId_idx_6e14f7ca"
                   },
                   "onDelete": "setNull",
                   "source": {
@@ -6635,7 +6905,7 @@
                       "ogImageId"
                     ],
                     "namespaceId": "public",
-                    "tableName": "page_sees"
+                    "tableName": "page_seos"
                   },
                   "target": {
                     "columns": [
@@ -6651,8 +6921,8 @@
                   "columns": [
                     "ogImageId"
                   ],
-                  "name": "page_sees_ogImageId_idx_6e14f7ca",
-                  "prefix": "page_sees_ogImageId_idx",
+                  "name": "page_seos_ogImageId_idx_6e14f7ca",
+                  "prefix": "page_seos_ogImageId_idx",
                   "unique": false
                 }
               ],
@@ -6749,6 +7019,15 @@
                   "dataType": "pg/text",
                   "nullable": true
                 },
+                "createdAt": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "dataType": "pg/timestamptz",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nullable": false
+                },
                 "embedding": {
                   "codecId": "pg/vector@1",
                   "dataType": "pgvector/vector",
@@ -6758,8 +7037,8 @@
                   }
                 },
                 "id": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
+                  "codecId": "pg/uuid@1",
+                  "dataType": "pg/uuid",
                   "nullable": false
                 },
                 "metadata": {
@@ -7315,6 +7594,15 @@
                   "name": "project_images_projectId_idx_a96e4d92",
                   "prefix": "project_images_projectId_idx",
                   "unique": false
+                },
+                {
+                  "columns": [
+                    "projectId",
+                    "sortOrder"
+                  ],
+                  "name": "project_images_projectId_sortOrder_idx_853b79e8",
+                  "prefix": "project_images_projectId_sortOrder_idx",
+                  "unique": false
                 }
               ],
               "primaryKey": {
@@ -7323,12 +7611,6 @@
                 ]
               },
               "uniques": [
-                {
-                  "columns": [
-                    "projectId",
-                    "sortOrder"
-                  ]
-                },
                 {
                   "columns": [
                     "projectId",
@@ -8118,6 +8400,13 @@
               ]
             },
             "skills": {
+              "checks": [
+                {
+                  "expression": "\"proficiency\" IS NULL OR \"proficiency\" BETWEEN 0 AND 100",
+                  "name": "skill_proficiency_range_7fb47cef",
+                  "prefix": "skill_proficiency_range"
+                }
+              ],
               "columns": {
                 "createdAt": {
                   "codecId": "pg/timestamptz-temporal@1",
@@ -8794,10 +9083,10 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "19550cef32504175981cae9df0dfc2fdf84890e992eb3e9fc63019260ba436ee"
+    "storageHash": "d36bc2354fc76d4cd4b034c94fcc980b77b26326d91a7a7cc80ad2829d860a34"
   },
   "execution": {
-    "executionHash": "fa6b0cfb3d91fdd369e738b4ea9a66b92d47eb509100667054a2a927374782e0",
+    "executionHash": "999e432fdf770ceb6dbde24f25d8497ad028d592762c0ae1fc2dc1c50451003d",
     "mutations": {
       "defaults": [
         {
@@ -8973,6 +9262,32 @@
             "kind": "generator"
           },
           "ref": {
+            "entry": "docs",
+            "field": "id",
+            "namespace": "public"
+          }
+        },
+        {
+          "onCreate": {
+            "id": "instantNow",
+            "kind": "generator"
+          },
+          "onUpdate": {
+            "id": "instantNow",
+            "kind": "generator"
+          },
+          "ref": {
+            "entry": "docs",
+            "field": "updatedAt",
+            "namespace": "public"
+          }
+        },
+        {
+          "onCreate": {
+            "id": "uuidv7",
+            "kind": "generator"
+          },
+          "ref": {
             "entry": "educations",
             "field": "id",
             "namespace": "public"
@@ -9077,7 +9392,7 @@
             "kind": "generator"
           },
           "ref": {
-            "entry": "page_sees",
+            "entry": "page_seos",
             "field": "id",
             "namespace": "public"
           }
@@ -9092,7 +9407,7 @@
             "kind": "generator"
           },
           "ref": {
-            "entry": "page_sees",
+            "entry": "page_seos",
             "field": "updatedAt",
             "namespace": "public"
           }
@@ -9110,7 +9425,7 @@
         },
         {
           "onCreate": {
-            "id": "uuidv4",
+            "id": "uuidv7",
             "kind": "generator"
           },
           "ref": {
