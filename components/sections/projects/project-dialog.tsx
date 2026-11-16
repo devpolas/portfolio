@@ -74,7 +74,7 @@ export default function ProjectDialog({
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className='space-y-4 -mt-1'
+              className='space-y-4 pt-6'
             >
               <DialogHeader className='space-y-2 text-left'>
                 <DialogTitle className='font-bold text-2xl sm:text-4xl tracking-tight'>

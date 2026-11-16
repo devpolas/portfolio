@@ -3,7 +3,7 @@
 import { scrollState } from "@/utils/scroll-to-section";
 import { useEffect, useState } from "react";
 
-export default function useActiveSectionId(offsetRatio = 0.35) {
+export default function useActiveSectionId(offsetRatio = 0.5) {
   const [activeId, setActiveId] = useState("");
 
   useEffect(() => {

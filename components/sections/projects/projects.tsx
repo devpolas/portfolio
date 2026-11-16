@@ -15,9 +15,8 @@ export default function ProjectSection() {
   const featured = projectData.slice(0, 3);
 
   return (
-    <Section id='projects' glow='right'>
+    <Section className='w-full' id='projects' glow='right'>
       <SectionHeading
-        id='projects'
         align='left'
         eyebrow='Selected work'
         title={
@@ -41,8 +40,7 @@ export default function ProjectSection() {
         }
       />
 
-      {/* Cards animate themselves with a per-index delay */}
-      <div className='gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+      <div className='sm:max-lg:[&>*:nth-child(3)]:hidden gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
         {featured.map((project, i) => (
           <ProjectCard key={project.id} project={project} index={i} />
         ))}

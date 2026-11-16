@@ -54,7 +54,7 @@ export default function Footer() {
         className='-right-32 -bottom-40 -z-10 absolute border border-brand/10 rounded-full size-96 pointer-events-none'
       />
 
-      <div className='mx-auto px-5 sm:px-8 container'>
+      <div className='mx-auto container'>
         <div className='gap-12 lg:gap-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr] py-14 sm:py-20'>
           {/* Brand column */}
           <div className='flex flex-col items-start'>

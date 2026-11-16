@@ -63,7 +63,7 @@ export default function HomeNavbar() {
           "flex items-center mx-auto pointer-events-auto glass-section",
           "border border-transparent",
           "transition-[width,height,margin,border-radius,box-shadow,border-color]",
-          "duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "duration-300 ease-out-quint",
           "motion-reduce:transition-none",
           isScrolled
             ? [
@@ -83,7 +83,7 @@ export default function HomeNavbar() {
           className={cn(
             "flex justify-between items-center gap-3 mx-auto h-full",
             "transition-[width] duration-300",
-            "ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "ease-out-quint",
             "motion-reduce:transition-none",
             isScrolled ? "w-full px-4" : cn(CONTENT_WIDTH, "px-0"),
           )}

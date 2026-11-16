@@ -5,7 +5,7 @@ import { profile } from "@/data/profile";
 
 export function HeroPortrait() {
   return (
-    <div className='relative mx-auto w-full max-w-lg hero-portrait'>
+    <div className='relative w-full max-w-lg hero-portrait'>
       {/* Ambient lighting */}
       <div
         aria-hidden='true'

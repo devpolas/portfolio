@@ -1,7 +1,8 @@
+import Footer from "@/components/footer/footer";
 import RouteNavbar from "@/components/navbar/routes/route-navbar";
 import type { ReactNode } from "react";
 
-export default function MainLayout({
+export default function PublicLayout({
   children,
 }: Readonly<{
   children: ReactNode;
@@ -13,6 +14,8 @@ export default function MainLayout({
       <div id='main-content' className='flex-1 w-full'>
         {children}
       </div>
+
+      <Footer />
     </div>
   );
 }

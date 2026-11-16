@@ -7,7 +7,7 @@ import HeroSocialLinks from "./hero-social-links";
 
 export function HeroContent() {
   return (
-    <div className='z-10 relative mx-auto w-full min-w-0 max-w-2xl'>
+    <div className='z-10 relative w-full min-w-0 max-w-2xl'>
       {/* Eyebrow */}
       <div className='flex flex-wrap items-center gap-3 mb-7 hero-eyebrow'>
         <div className='inline-flex items-center gap-2 bg-brand/5 px-4 py-2 border border-brand/20 rounded-full'>
@@ -17,7 +17,7 @@ export function HeroContent() {
           </span>
 
           <span className='font-medium text-brand text-xs tracking-wide'>
-            {profile.role}
+            {profile.name}
           </span>
         </div>
 

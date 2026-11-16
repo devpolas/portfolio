@@ -16,15 +16,13 @@ export default function Hero() {
       ref={container}
       id='home'
       aria-labelledby='hero-heading'
-      className='isolate relative flex items-center py-16 sm:py-20 lg:py-16 min-h-[calc(100svh-5rem)] overflow-hidden'
+      className='isolate relative flex items-center py-8 sm:py-16 md:py-20 lg:py-16 min-h-[calc(100svh-var(--header-h))] overflow-hidden'
     >
-      {/* Background atmosphere */}
       <div
         aria-hidden='true'
         className='-z-10 absolute inset-0 pointer-events-none brand-glow-bg'
       />
 
-      {/* Decorative circles */}
       <div
         aria-hidden='true'
         className='-top-40 -right-32 -z-10 absolute border border-brand/10 rounded-full size-80 sm:size-112 pointer-events-none'
@@ -35,7 +33,8 @@ export default function Hero() {
         className='-bottom-40 -left-40 -z-10 absolute border border-brand/10 rounded-full size-80 sm:size-112 pointer-events-none'
       />
 
-      <div className='mx-auto px-5 sm:px-8 container'>
+      {/* Same width as the navbar's CONTENT_WIDTH, with no extra padding */}
+      <div className='mx-auto w-11/12 lg:w-10/12'>
         <div className='items-center gap-14 lg:gap-10 xl:gap-16 grid lg:grid-cols-[1.1fr_0.9fr]'>
           <HeroContent />
 

@@ -52,8 +52,9 @@ const aboutContent: AboutCardContent[] = [
 
 export default function About() {
   return (
-    <Section id='about' glow='left'>
+    <Section id='about' glow='right'>
       <SectionHeading
+        align='left'
         id='about'
         eyebrow='A little about me'
         title={

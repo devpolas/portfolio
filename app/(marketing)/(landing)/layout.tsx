@@ -2,7 +2,7 @@ import Footer from "@/components/footer/footer";
 import HomeNavbar from "@/components/navbar/home/home-navbar";
 import type { ReactNode } from "react";
 
-export default function MainLayout({
+export default function LandingLayout({
   children,
 }: Readonly<{
   children: ReactNode;

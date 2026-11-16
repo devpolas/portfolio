@@ -32,8 +32,9 @@ const itemVariants: Variants = {
 
 export default function SkillsSection() {
   return (
-    <Section id='skills' glow='left'>
+    <Section id='skills' glow='right'>
       <SectionHeading
+        align='left'
         id='skills'
         eyebrow='Tech stack'
         title={

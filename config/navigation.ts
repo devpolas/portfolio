@@ -21,7 +21,7 @@ export const mainNavigation = [
 ] as const satisfies readonly NavigationItem[];
 
 export const mainHomeNavigation = [
-  { label: "Home", href: "/" },
+  { label: "Home", href: "/#home" },
   { label: "Projects", href: "/#projects" },
   { label: "About", href: "/#about" },
   { label: "Skills", href: "/#skills" },

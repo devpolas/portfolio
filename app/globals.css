@@ -1033,3 +1033,25 @@
     animation: none !important;
   }
 }
+
+/* Hidden from first paint, only when the animation will actually run */
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  .hero-eyebrow,
+  .hero-heading-line,
+  .hero-description,
+  .hero-actions,
+  .hero-social,
+  .hero-portrait,
+  .hero-floating-card {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+:root {
+  --header-h: 4rem; /* same variable as before */
+}
+
+@utility page-container {
+  @apply w-11/12 lg:w-10/12;
+}
