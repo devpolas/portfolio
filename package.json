@@ -69,6 +69,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "beta",
+    "@mdx-js/rollup": "^3.1.1",
     "@prisma/dev": "0.25.2",
     "@tailwindcss/postcss": "latest",
     "@tailwindcss/turbopack": "^4.3.5",
@@ -80,7 +81,7 @@
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
     "@vitejs/plugin-rsc": "latest",
-    "cf": "1.0.0-beta.27",
+    "cf": "1.0.0-rc.2",
     "eslint": "^10.15.0",
     "eslint-config-next": "16.4.2",
     "prisma": "8.0.0-rc.28",
