@@ -63,7 +63,7 @@ export function HeroPortrait() {
               <Code2 className='size-5' />
             </div>
 
-            <div>
+            <div className='hidden md:flex flex-col'>
               <p className='font-semibold text-xs'>Full-Stack Developer</p>
               <p className='text-[11px] text-muted-foreground'>
                 Building for the web
