@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+
 import { cn } from "@/lib/utils";
 import { SectionIdProvider } from "./section-context";
 
@@ -6,10 +7,6 @@ interface SectionProps {
   id: string;
   glow?: "left" | "right";
   className?: string;
-  /**
-   * Use when the section has no <SectionHeading>. Without a heading,
-   * aria-labelledby would point at nothing, so aria-label is used instead.
-   */
   ariaLabel?: string;
   children: ReactNode;
 }
@@ -28,13 +25,15 @@ export function Section({
       id={id}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabel ? undefined : `${id}-heading`}
+      tabIndex={-1}
       className={cn(
         "isolate relative overflow-hidden section-space",
         "scroll-mt-[calc(var(--header-h)+1rem)]",
+        "focus:outline-none",
         className,
       )}
     >
-      {/* Ambient brand lighting (the section already clips overflow) */}
+      {/* Ambient brand lighting */}
       <div
         aria-hidden='true'
         className='-z-10 absolute inset-0 pointer-events-none'
@@ -45,6 +44,7 @@ export function Section({
             isRight ? "-right-40" : "-left-40",
           )}
         />
+
         <div
           className={cn(
             "bottom-0 absolute bg-brand-nature/5 blur-[110px] rounded-full size-72",
@@ -68,6 +68,7 @@ export function Section({
           aria-hidden='true'
           className='-bottom-40 -left-40 -z-10 absolute border border-brand/10 rounded-full size-80 sm:size-112 pointer-events-none'
         />
+
         <SectionIdProvider id={id}>{children}</SectionIdProvider>
       </div>
     </section>
