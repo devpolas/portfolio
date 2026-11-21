@@ -14,6 +14,7 @@ import { ThemeSwitcher } from "../../theme/theme-switcher";
 import { isRouteActive } from "./route-utils";
 import { LinkItem } from "../link-item";
 import RouteMobileNavbar from "./mobile-route-navbar";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const SCROLL_THRESHOLD = 12;
 
@@ -56,6 +57,7 @@ function useIsScrolled(threshold = SCROLL_THRESHOLD) {
 export default function RouteNavbar() {
   const pathname = usePathname();
   const isScrolled = useIsScrolled();
+  const isMobile = useIsMobile();
 
   return (
     <header className='top-0 z-50 sticky w-full h-16 pointer-events-none'>
@@ -91,7 +93,12 @@ export default function RouteNavbar() {
             isScrolled ? "w-full px-4" : cn(CONTENT_WIDTH, "px-0"),
           )}
         >
-          <Logo href='/' priority className='-ml-1 lg:-ml-2 shrink-0' />
+          <Logo
+            href='/'
+            priority
+            className='-ml-1 lg:-ml-2 shrink-0'
+            showName={!isMobile}
+          />
 
           <div className='flex items-center gap-2 shrink-0'>
             <div className='hidden lg:flex items-center gap-1'>

@@ -3,27 +3,36 @@ import { profile } from "@/data/profile";
 export const siteConfig = {
   name: profile.name,
   username: profile.username,
-  brandName: "POLAS",
+  brandName: profile.brandName, // "Dev Polas"
 
-  title: profile.role,
+  title: profile.websiteConfig.title, // "Polas Chandra Barmon | Full-Stack Software Engineer"
+  role: profile.role,
   headline: profile.headline,
 
-  // ~155 characters: fits Google's snippet length.
+  // ~150 characters, so Google is unlikely to truncate it.
   description:
-    "Polas Chandra Barmon is a Full-Stack & AI Engineer building reliable web apps and AI-powered features with Next.js, TypeScript, Node.js, PostgreSQL, and RAG.",
+    "Polas Chandra Barmon is a Full-Stack Software Engineer building reliable web apps and AI features with Next.js, TypeScript, Node.js, PostgreSQL and RAG.",
 
   url: profile.website,
   email: profile.email,
-  locale: "en_US",
-  twitterHandle: "@XTWPCB",
+  publicEmail: profile.alternativeEmail,
+  locale: profile.websiteConfig.locale,
+  language: profile.websiteConfig.language,
+  twitterHandle: `@${profile.social.x.username}`,
 
+  // URL strings only, so Object.values() is always safe.
   social: {
-    github: profile.social.github,
-    linkedin: profile.social.linkedin,
-    x: profile.social.x,
-    facebook: profile.social.facebook[0],
-    telegram: profile.social.telegram,
-    whatsapp: profile.social.whatsapp,
+    github: profile.social.github.url,
+    linkedin: profile.social.linkedin.url,
+    x: profile.social.x.url,
+    facebook: profile.social.facebook.url,
+    instagram: profile.social.instagram.url,
+  },
+
+  // Contact links, deliberately kept out of sameAs.
+  contact: {
+    whatsapp: profile.contact.whatsapp,
+    telegram: profile.contact.telegram,
   },
 
   location: profile.location,
@@ -40,29 +49,8 @@ export const siteConfig = {
       "Performance Optimization",
     ],
 
-    technologies: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "JavaScript",
-      "Node.js",
-      "Express.js",
-      "NestJS",
-      "PostgreSQL",
-      "Prisma ORM",
-      "MongoDB",
-      "Mongoose",
-      "Redis",
-      "Python",
-      "FastAPI",
-      "LangChain",
-      "LangGraph",
-      "Retrieval-Augmented Generation",
-      "Embeddings",
-      "Vector Search",
-      "AI Agents",
-      "n8n",
-    ],
+    // Derived from the profile so the two can never drift apart.
+    technologies: [...new Set(Object.values(profile.expertise).flat())],
 
     interests: [
       "System Design",

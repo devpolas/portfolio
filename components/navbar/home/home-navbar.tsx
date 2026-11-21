@@ -11,6 +11,7 @@ import { ThemeSwitcher } from "../../theme/theme-switcher";
 import { LinkItem } from "../link-item";
 import HomeMobileNavbar from "./mobile-home-navbar";
 import useActiveSectionId from "@/hooks/use-active-section";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const SCROLL_THRESHOLD = 12;
 
@@ -53,6 +54,7 @@ function useIsScrolled(threshold = SCROLL_THRESHOLD) {
 export default function HomeNavbar() {
   const isScrolled = useIsScrolled();
   const activeId = useActiveSectionId();
+  const isMobile = useIsMobile();
 
   return (
     <header className='top-0 z-50 sticky w-full h-16 pointer-events-none'>
@@ -88,7 +90,12 @@ export default function HomeNavbar() {
             isScrolled ? "w-full px-4" : cn(CONTENT_WIDTH, "px-0"),
           )}
         >
-          <Logo href='/' priority className='-ml-1 lg:-ml-2 shrink-0' />
+          <Logo
+            href='/'
+            priority
+            className='-ml-1 lg:-ml-2 shrink-0'
+            showName={!isMobile}
+          />
 
           <div className='flex items-center gap-2 shrink-0'>
             <div className='hidden lg:flex items-center gap-1'>

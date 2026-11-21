@@ -60,7 +60,7 @@ export default function Logo({
       {showName ? (
         <span
           className={cn(
-            "hidden sm:flex font-black text-2xl xl:text-3xl",
+            "font-black text-2xl xl:text-3xl",
             // leading-none would clip the descender of "p" with bg-clip-text.
             "leading-[1.1] tracking-[0.06em] brand-text-gradient",
             "select-none",

@@ -1,67 +1,26 @@
-import type { Metadata } from "next";
+import { profile } from "@/data/profile";
 import { siteConfig } from "./site";
 
-const defaultTitle = `${siteConfig.title} | ${siteConfig.name}`;
+const siteUrl = siteConfig.url;
+const personId = `${siteUrl}/#person`;
+const websiteId = `${siteUrl}/#website`;
 
-export const defaultMetadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-
-  title: { default: defaultTitle, template: `%s | ${siteConfig.name}` },
-
-  description: siteConfig.description,
-  applicationName: siteConfig.brandName,
-
-  authors: [
-    {
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-  ],
-
-  creator: siteConfig.name,
-  publisher: siteConfig.name,
-
-  openGraph: {
-    type: "website",
-    locale: siteConfig.locale,
-    siteName: siteConfig.brandName,
-    title: defaultTitle,
-    description: siteConfig.description,
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: defaultTitle,
-    description: siteConfig.description,
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-};
+// Must be a real photo of you. These exist in /public: profile.webp, profile.png, polas.webp.
+// Pick the one that is a clear portrait (not a banner or logo).
+const PROFILE_PHOTO = "/profile.webp";
 
 export const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": `${siteConfig.url}/#person`,
+  "@id": personId,
   name: siteConfig.name,
-  url: siteConfig.url,
-  email: `mailto:${siteConfig.email}`,
-  jobTitle: siteConfig.title,
+  alternateName: [...profile.seo.alternateNames].filter(
+    (n) => n !== siteConfig.name,
+  ),
+  url: siteUrl,
+  image: new URL(PROFILE_PHOTO, siteUrl).toString(),
+  email: siteConfig.publicEmail, // keeps the personal Gmail out of structured data
+  jobTitle: siteConfig.role,
   description: siteConfig.description,
   address: {
     "@type": "PostalAddress",
@@ -69,23 +28,34 @@ export const personJsonLd = {
     addressRegion: siteConfig.location.division,
     addressCountry: siteConfig.location.countryCode,
   },
-  sameAs: Object.values(siteConfig.social),
+  knowsLanguage: profile.languages.map((l) => l.code),
+  // Derived from profile.social entries flagged sameAs: true (URL strings only).
+  sameAs: [...profile.seo.sameAs],
   knowsAbout: [
-    ...siteConfig.professional.specialties,
-    ...siteConfig.professional.technologies,
+    ...new Set([
+      ...siteConfig.professional.specialties,
+      ...siteConfig.professional.technologies,
+    ]),
   ],
+  mainEntityOfPage: { "@id": websiteId },
 };
 
 export const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": `${siteConfig.url}/#website`,
-  url: siteConfig.url,
+  "@id": websiteId,
+  url: siteUrl,
   name: siteConfig.brandName,
   alternateName: siteConfig.name,
   description: siteConfig.description,
-  inLanguage: "en",
-  publisher: {
-    "@id": `${siteConfig.url}/#person`,
-  },
+  inLanguage: siteConfig.language,
+  publisher: { "@id": personId },
 };
+
+/**
+ * Safe serialization for <script type="application/ld+json">.
+ * Usage: <script type="application/ld+json"
+ *          dangerouslySetInnerHTML={{ __html: jsonLdString(personJsonLd) }} />
+ */
+export const jsonLdString = (data: object) =>
+  JSON.stringify(data).replace(/</g, "\\u003c");
