@@ -5,9 +5,10 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import "lenis/dist/lenis.css";
 
-import { defaultMetadata, personJsonLd, websiteJsonLd } from "@/config/seo";
+import { personJsonLd, websiteJsonLd } from "@/config/seo";
 import { siteConfig } from "@/config/site";
 import Provider from "@/provider";
+import { defaultMetadata } from "@/config/metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
