@@ -184,7 +184,7 @@ export const profile = {
   contact: {
     email: PERSONAL_EMAIL,
     alternativeEmail: PUBLIC_EMAIL,
-    whatsapp: "https://wa.me/message/CB3BJMCEUNTDD1",
+    whatsapp: "https://wa.me/devpolas",
     telegram: social.telegram.url,
   },
 

@@ -9,6 +9,7 @@ const siteUrl = new URL(siteConfig.url);
 type RouteKey = keyof typeof routeMetadata;
 
 // Routes are derived from routeMetadata, so the sitemap can never drift from real pages.
+// The Record type forces an entry here whenever a route is added to routeMetadata.
 const routeSettings: Record<
   RouteKey,
   {
@@ -22,7 +23,9 @@ const routeSettings: Record<
   projects: { priority: 0.9, changeFrequency: "weekly" },
   about: { priority: 0.7, changeFrequency: "monthly" },
   skills: { priority: 0.7, changeFrequency: "monthly" },
+  experience: { priority: 0.7, changeFrequency: "monthly" },
   education: { priority: 0.6, changeFrequency: "monthly" },
+  docs: { priority: 0.5, changeFrequency: "monthly" },
   contact: { priority: 0.6, changeFrequency: "monthly" },
 };
 
@@ -42,6 +45,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: project.featured ? 0.8 : 0.6,
   }));
+
+  // TODO: add /docs/[slug] pages once you decide where the slug list comes from
+  // (content/docs/*.mdx or components/docs/docs-config.ts).
 
   return [...pages, ...projectPages];
 }

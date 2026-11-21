@@ -12,35 +12,39 @@ import Logo from "../logo";
 import { profile } from "@/data/profile";
 import { mainHomeNavigation } from "@/config/navigation";
 
+// Every href is a URL string. Social entries are objects, so always read `.url`.
 const socials = [
   {
     label: "GitHub",
-    href: profile.social.github,
+    href: profile.social.github.url,
     icon: FaGithub,
   },
   {
     label: "LinkedIn",
-    href: profile.social.linkedin,
+    href: profile.social.linkedin.url,
     icon: FaLinkedin,
   },
   {
     label: "Facebook",
-    href: profile.social.facebook[0],
+    href: profile.social.facebook.url,
     icon: FaFacebook,
   },
   {
     label: "Telegram",
-    href: profile.social.telegram,
+    href: profile.social.telegram.url,
     icon: FaTelegram,
   },
   {
     label: "WhatsApp",
-    href: profile.social.whatsapp,
+    href: profile.contact.whatsapp,
     icon: FaWhatsapp,
   },
 ];
 
 export default function Footer() {
+  const year = 2026;
+  const publicEmail = profile.alternativeEmail;
+
   return (
     <footer className='isolate relative bg-background border-border/70 border-t overflow-hidden text-foreground'>
       {/* Background atmosphere */}
@@ -61,13 +65,12 @@ export default function Footer() {
             <Logo />
 
             <p className='mt-5 max-w-sm text-muted-foreground text-sm leading-7'>
-              Building modern, scalable, and user-focused digital experiences
-              with thoughtful engineering and meaningful design.
+              {profile.brand.philosophy}
             </p>
 
             {/* Location */}
             <div className='inline-flex items-center gap-2 mt-6 text-muted-foreground text-xs'>
-              <MapPin className='size-3.5 text-brand' />
+              <MapPin aria-hidden='true' className='size-3.5 text-brand' />
               {profile.location.city}, {profile.location.country}
             </div>
 
@@ -93,7 +96,10 @@ export default function Footer() {
                     >
                       {item.label}
 
-                      <ArrowUpRight className='opacity-0 group-hover:opacity-100 size-3 transition-all -translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 duration-200' />
+                      <ArrowUpRight
+                        aria-hidden='true'
+                        className='opacity-0 group-hover:opacity-100 size-3 transition-all -translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 duration-200'
+                      />
                     </Link>
                   </li>
                 ))}
@@ -104,7 +110,7 @@ export default function Footer() {
           {/* Connect */}
           <div>
             <h3 className='mb-6 font-semibold text-foreground text-xs uppercase tracking-[0.18em]'>
-              Let's connect
+              Let&apos;s connect
             </h3>
 
             <p className='mb-5 text-muted-foreground text-sm leading-6'>
@@ -123,19 +129,25 @@ export default function Footer() {
                   title={label}
                   className='group inline-flex justify-center items-center bg-background/60 hover:bg-brand border border-border/70 hover:border-brand rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 size-10 text-muted-foreground hover:text-brand-foreground transition-all hover:-translate-y-1 duration-300'
                 >
-                  <Icon className='size-4 group-hover:scale-110 transition-transform duration-300' />
+                  <Icon
+                    aria-hidden='true'
+                    className='size-4 group-hover:scale-110 transition-transform duration-300'
+                  />
                 </a>
               ))}
             </div>
 
             {/* Email link */}
             <a
-              href='mailto:hello@polas.dev'
+              href={`mailto:${publicEmail}`}
               className='group inline-flex items-center gap-2 mt-6 font-medium text-muted-foreground hover:text-brand text-sm transition-colors duration-200'
             >
-              <Mail className='size-4 text-brand' />
-              hello@polas.dev
-              <ArrowUpRight className='size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 duration-200' />
+              <Mail aria-hidden='true' className='size-4 text-brand' />
+              {publicEmail}
+              <ArrowUpRight
+                aria-hidden='true'
+                className='size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 duration-200'
+              />
             </a>
           </div>
         </div>
@@ -144,7 +156,7 @@ export default function Footer() {
           <div className='flex sm:flex-row flex-col justify-between items-center gap-5 py-6 text-muted-foreground text-xs'>
             {/* Copyright */}
             <p className='sm:text-left text-center'>
-              © 2026{" "}
+              © {year}{" "}
               <span className='font-semibold text-foreground'>
                 {profile.name}
               </span>
@@ -157,14 +169,17 @@ export default function Footer() {
               <span className='text-brand'>Built with passion.</span>
             </p>
 
-            {/* Back to top */}
-            <a
-              href='#home'
+            {/* Back to top: "/#home" works from every route, not just the home page */}
+            <Link
+              href='/#home'
               className='group inline-flex items-center gap-2 px-4 py-2 border border-border/70 hover:border-brand rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 font-medium hover:text-brand transition-all hover:-translate-y-1 duration-300'
             >
               Back to top
-              <ArrowUp className='size-3.5 transition-transform group-hover:-translate-y-1 duration-300' />
-            </a>
+              <ArrowUp
+                aria-hidden='true'
+                className='size-3.5 transition-transform group-hover:-translate-y-1 duration-300'
+              />
+            </Link>
           </div>
         </div>
       </div>

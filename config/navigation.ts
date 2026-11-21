@@ -52,12 +52,12 @@ export const socialNavigation = [
   },
   {
     label: "Telegram",
-    href: siteConfig.social.telegram,
+    href: siteConfig.contact.telegram,
     external: true,
   },
   {
     label: "WhatsApp",
-    href: siteConfig.social.whatsapp,
+    href: siteConfig.contact.whatsapp,
     external: true,
   },
 ] as const satisfies readonly SocialNavigationItem[];

@@ -10,34 +10,30 @@ import type { IconType } from "react-icons";
 
 import { profile } from "@/data/profile";
 
-const socialLinks: {
-  label: string;
-  href: string;
-  icon: IconType;
-}[] = [
+const socials = [
   {
     label: "GitHub",
-    href: profile.social.github,
+    href: profile.social.github.url,
     icon: FaGithub,
   },
   {
     label: "LinkedIn",
-    href: profile.social.linkedin,
+    href: profile.social.linkedin.url,
     icon: FaLinkedin,
   },
   {
     label: "Facebook",
-    href: profile.social.facebook[0],
+    href: profile.social.facebook.url,
     icon: FaFacebook,
   },
   {
     label: "Telegram",
-    href: profile.social.telegram,
+    href: profile.social.telegram.url,
     icon: FaTelegram,
   },
   {
     label: "WhatsApp",
-    href: profile.social.whatsapp,
+    href: profile.contact.whatsapp,
     icon: FaWhatsapp,
   },
 ];
@@ -45,7 +41,7 @@ const socialLinks: {
 export default function HeroSocialLinks() {
   return (
     <div className='flex items-center gap-2'>
-      {socialLinks.map(({ label, href, icon: Icon }) => (
+      {socials.map(({ label, href, icon: Icon }) => (
         <a
           key={label}
           href={href}
